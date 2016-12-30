@@ -1,0 +1,585 @@
+@(name:String)
+<!DOCTYPE HTML>
+<html class="app">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>收藏--3usic在线音乐库</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="3usic在线音乐库" />
+		<script src="@routes.Assets.versioned("js/jquery-1.9.0.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/layer.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/extend/layer.ext.js")"></script>
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+			<!-- bootstrap -->
+		<link href="@routes.Assets.versioned("css/bootstrap.min.css")" rel='stylesheet' type='text/css' media="all" />
+			<!-- //bootstrap -->
+		<link href="@routes.Assets.versioned("css/dashboard.css")" rel="stylesheet">
+			<!-- Custom Theme files -->
+		<link href="@routes.Assets.versioned("css/style.css")" rel='stylesheet' type='text/css' media="all" />
+			<!-- fonts -->
+		<link href="@routes.Assets.versioned("js/jPlayer/jplayer.flat.css")" rel="stylesheet"  type="text/css" />
+		<link href="@routes.Assets.versioned("css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+		<link href="@routes.Assets.versioned("css/simple-line-icons.css")" rel="stylesheet" type="text/css" />
+		<link href="@routes.Assets.versioned("css/font.css")" rel="stylesheet" type="text/css" />
+			<!-- //fonts -->
+		<link rel="stylesheet" href="@routes.Assets.versioned("css/app.css")" type="text/css" />
+	</head>
+
+	<body>
+
+			<!--头部开始-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/"><h1><img src="@routes.Assets.versioned("images/3usic_logoo.png")" alt="" class="mylogo" /></h1></a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="top-search">
+						<form class="navbar-form navbar-right">
+							<input type="text" class="form-control" placeholder="搜索...">
+							<select name="type" class="mysel" id="typesel">
+								<option value="0">全部</option>
+								<option value="1">歌曲名</option>
+								<option value="2">专辑</option>
+								<option value="3">歌手</option>
+								<option value="4">类别</option>
+							</select>
+							<s>
+								<s></s>
+							</s>
+							<input type="submit" value=" ">
+						</form>
+					</div>
+					<div class="header-top-right nologin" style="display:none;">
+						<div class="file">
+							<a href="/upload">上传</a>
+						</div>
+						<div class="signin">
+							<a id="zc" class="play-icon popup-with-zoom-anim">注册</a>
+							<script>
+									$('#zc').on('click', function () {
+										//2秒后自动关闭，-1代表不显示图标
+										//layer.msg('Hello layer', 2, -1);
+
+										$.layer({
+											type: 2,
+											shadeClose: true,
+											title: false,
+											closeBtn: [0, false],
+											shade: [0.8, '#000'],
+											border: [0],
+											offset: ['200px',''],
+											area: ['800px', '340px'],
+											iframe: {src: '/reg'}
+										});
+									});
+							</script>
+
+						</div>
+						<div class="signin">
+							<a id="dl" class="play-icon popup-with-zoom-anim">登录</a>
+							<script>
+									$('#dl').on('click', function () {
+										//2秒后自动关闭，-1代表不显示图标
+										//layer.msg('Hello layer', 2, -1);
+
+										$.layer({
+											type: 2,
+											shadeClose: true,
+											title: false,
+											closeBtn: [0, false],
+											shade: [0.8, '#000'],
+											border: [0],
+											offset: ['200px',''],
+											area: ['800px', '340px'],
+											iframe: {src: '/login'}
+										});
+									});
+							</script>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="header-top-right islogin" style="display:block;">
+						<div class="file">
+							<a href="/upload">上传</a>
+						</div>
+						<div class="navbar-right loginfo">
+							<ul class="nav navbar-nav m-n hidden-xs nav-user user">
+								<li class="hidden-xs">
+									<a href="#" class="dropdown-toggle lt" data-toggle="dropdown">
+										<i class="icon-bell"></i>
+										<span class="badge badge-sm up bg-danger count">2</span>
+									</a>
+									<section class="dropdown-menu aside-xl animated fadeInUp">
+										<section class="panel bg-white">
+											<div class="panel-heading b-light bg-light">
+												<strong>你有 <span class="count">2</span> 个通知</strong>
+											</div>
+											<div class="list-group list-group-alt">
+												<a href="#" class="media list-group-item">
+													<span class="pull-left thumb-sm">
+														<img src="@routes.Assets.versioned("images/a0.png.jpg")" alt="..." class="img-circle">
+													</span>
+													<span class="media-body block m-b-none">
+														我是第一条消息内容<br/>
+														<small class="text-muted">10分钟前</small>
+													</span>
+												</a>
+												<a href="#" class="media list-group-item">
+													<span class="media-body block m-b-none">
+														第二条消息内容<br>
+														<small class="text-muted">1小时前</small>
+													</span>
+												</a>
+											</div>
+											<div class="panel-footer text-sm">
+												<a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+												<a href="#notes" data-toggle="class:show animated fadeInRight">查看所有消息</a>
+											</div>
+										</section>
+									</section>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+										<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+											<img src="@routes.Assets.versioned("images/a4.png.jpg")" alt="...">
+										</span>
+										<span id="usern">@name</span> <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu animated fadeInRight">
+										<li>
+											<span class="arrow top"></span>
+											<a href="#">设置</a>
+										</li>
+										<li>
+											<a href="#"><span class="badge bg-danger pull-right">3</span>消息</a>
+										</li>
+										<li>
+											<a href="#">帮助</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="#">退出</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</nav>
+			<!--头部结束-->
+
+			<!--左侧边开始-->
+		<div class="col-sm-3 col-md-2 sidebar">
+
+			<div class="top-navigation">
+				<div class="t-menu">菜单</div>
+				<div class="t-img">
+					<img src="@routes.Assets.versioned("images/lines.png")" alt="" />
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+			<div class="drop-navigation drop-navigation">
+				<ul class="nav nav-sidebar">
+					<li><a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a></li>
+					<li><a href="#" class="menu1"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>音乐库<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+					<ul class="cl-effect-2">
+						<li><a href="/song">按专辑</a></li>
+						<li><a href="/song">按歌手</a></li>
+						<li><a href="/song">按类型</a></li>
+					</ul>
+						<!-- script-for-menu -->
+					<script>
+							$( "li a.menu1" ).click(function() {
+								$( "ul.cl-effect-2" ).slideToggle( 300, function() {
+									// Animation complete.
+								});
+							});
+					</script>
+					<li><a href="/listen" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>播放</a></li>
+					<li class="active"><a href="/store" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>收藏</a></li>
+					<li><a href="/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>历史</a></li>
+				</ul>
+					<!-- script-for-menu -->
+				<script>
+						$( ".top-navigation" ).click(function() {
+							$( ".drop-navigation" ).slideToggle( 300, function() {
+								// Animation complete.
+							});
+						});
+				</script>
+				<div class="side-bottom">
+
+					<div class="copyright">
+						<p>Copyright &copy; 2016-2018. <br/> <a href="#"> WEB开发第三学习小组 版权所有</a></p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+			<!--左侧边结束-->
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main mybox">
+
+			<div class="show-top-grids myscrollable">
+				<div class="main-grids">
+					<div class="recommended-info">
+						<h3>我的收藏</h3>
+
+						<div class="my-grid">
+							<ul class="list-group gutter list-group-lg list-group-sp sortable">
+								<li class="list-group-item bg-info">
+									<span class="pull-right" >
+										<a  href="" id="d1"><i class="fa fa-times fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 01</span>
+									<div class="clear text-white">
+										<span id="s1"></span><span class="singer">（<span id="sg1"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item bg-primary">
+									<span class="pull-right" >
+										<a href="" id="d2"><i class="fa fa-times fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 02</span>
+									<div class="clear text-white">
+										<span id="s2"></span><span class="singer">（<span id="sg2"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item bg-success">
+									<span class="pull-right" >
+										<a href="" id="d3"><i class="fa fa-times fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 03</span>
+									<div class="clear text-white">
+										<span id="s3"></span><span class="singer">（<span id="sg3"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d4"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 04</span>
+									<div class="clear">
+										<span id="s4"></span><span class="singer textcolor">（<span id="sg4"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d5"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 05</span>
+									<div class="clear">
+										<span id="s5"></span><span class="singer textcolor">（<span id="sg5"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d6"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 06</span>
+									<div class="clear">
+										<span id="s6"></span><span class="singer textcolor">（<span id="sg6"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d7"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 07</span>
+									<div class="clear">
+										<span id="s7"></span><span class="singer textcolor">（<span id="sg7"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d8"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 08</span>
+									<div class="clear">
+										<span id="s8"></span><span class="singer textcolor">（<span id="sg8"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d9"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 09</span>
+									<div class="clear">
+										<span id="s9"></span><span class="singer textcolor">（<span id="sg9"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d10"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 10</span>
+									<div class="clear">
+										<span id="s10"></span><span class="singer textcolor">（<span id="sg10"></span>）</span>
+									</div>
+								</li>
+
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d11"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 11</span>
+									<div class="clear">
+										<span id="s11"></span><span class="singer textcolor">（<span id="sg11"></span>）</span>
+									</div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="" id="d12"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 12</span>
+									<div class="clear">
+										<span id="s12"></span><span class="singer textcolor">（<span id="sg12"></span>）</span>
+									</div>
+								</li>
+									<!--
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="#"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 13</span>
+									<div class="clear">
+										<span id="s13"></span><span class="singer textcolor">（<span id="sg13"></span>）</span>
+				                    </div>
+								</li>
+								<li class="list-group-item">
+									<span class="pull-right" >
+										<a href="#"><i class="fa fa-times icon-muted fa-fw"></i></a>
+									</span>
+									<span class="pull-right media-xs">
+										<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+									</span>
+									<span class="pull-left media-xs"><i class="fa fa-sort text-muted fa m-r-sm"></i> 14</span>
+									<div class="clear">
+										<span id="s14"></span><span class="singer textcolor">（<span id="sg14"></span>）</span>
+				                    </div>
+								</li>
+								-->
+							</ul>
+							<ul class="pagination pagination">
+								<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+				<div class="heightdiv"></div>
+			</div>
+
+				<!-- footer -->
+			<div class="myfooter">
+				<footer class="footer bg-info dker">
+					<div id="jp_container_N">
+						<div class="jp-type-playlist">
+							<div id="jplayer_N" class="jp-jplayer hide"></div>
+							<div class="jp-gui">
+								<div class="jp-video-play hide">
+									<a class="jp-video-play-icon">play</a>
+								</div>
+								<div class="jp-interface">
+									<div class="jp-controls">
+										<div><a class="jp-previous" title="上一曲"><i class="icon-control-rewind i-lg"></i></a></div>
+										<div>
+											<a class="jp-play" title="播放"><i class="icon-control-play i-2x"></i></a>
+											<a class="jp-pause hid" title="暂停"><i class="icon-control-pause i-2x"></i></a>
+										</div>
+										<div><a class="jp-next" title="下一曲"><i class="icon-control-forward i-lg"></i></a></div>
+										<div class="hide"><a class="jp-stop" title="停止"><i class="fa fa-stop"></i></a></div>
+										<div><a class="" data-toggle="dropdown" data-target="#playlist" title="播放列表"><i class="icon-list"></i></a></div>
+										<div class="jp-progress hidden-xs">
+											<div class="jp-seek-bar dk">
+												<div class="jp-play-bar bg-info">
+												</div>
+												<div class="jp-title text-lt">
+													<ul>
+														<li></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="hidden-xs hidden-sm jp-current-time text-xs text-muted"></div>
+										<div class="hidden-xs hidden-sm jp-duration text-xs text-muted"></div>
+										<div class="hidden-xs hidden-sm">
+											<a class="jp-mute" title="静音"><i class="icon-volume-2"></i></a>
+											<a class="jp-unmute hid" title="取消静音"><i class="icon-volume-off"></i></a>
+										</div>
+										<div class="hidden-xs hidden-sm jp-volume">
+											<div class="jp-volume-bar dk">
+												<div class="jp-volume-bar-value lter"></div>
+											</div>
+										</div>
+										<div>
+											<a class="jp-shuffle" title="随机播放"><i class="icon-shuffle text-muted"></i></a>
+											<a class="jp-shuffle-off hid" title="关闭随机播放"><i class="icon-shuffle text-lt"></i></a>
+										</div>
+										<div>
+											<a class="jp-repeat" title="重复播放"><i class="icon-loop text-muted"></i></a>
+											<a class="jp-repeat-off hid" title="关闭重复播放"><i class="icon-loop text-lt"></i></a>
+										</div>
+										<div class="hide">
+											<a class="jp-full-screen" title="全屏"><i class="fa fa-expand"></i></a>
+											<a class="jp-restore-screen" title="退出全屏"><i class="fa fa-compress text-lt"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="jp-playlist dropup" id="playlist">
+								<ul class="dropdown-menu aside-xl dker">
+										<!-- The method Playlist.displayPlaylist() uses this unordered list -->
+									<li class="list-group-item"></li>
+								</ul>
+							</div>
+							<div class="jp-no-solution hide">
+								<span>需要升级</span>
+								为了播放媒体文件，你需要升级你的浏览器到最新版本 <a href="javascript:if(confirm('http://get.adobe.com/flashplayer/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://get.adobe.com/flashplayer/'" target="_blank">Flash插件</a>.
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+				<!-- //footer -->
+		</div>
+
+		<div class="clearfix"> </div>
+
+		<script>
+				$(document).ready(function(){
+					var name = $("#usern").text();
+					$.ajax({
+						url:"/storelist",
+						type:"get",
+						data:{name:name},
+						success: function(data){
+							storel=data.split("!");
+							//alert(data);
+							var d1=document.getElementById("d1");
+							d1.href="/songdel/"+storel[0];
+							var d2=document.getElementById("d2");
+							d2.href="/songdel/"+storel[4];
+							var d3=document.getElementById("d3");
+							d3.href="/songdel/"+storel[8];
+							var d4=document.getElementById("d4");
+							d4.href="/songdel/"+storel[12];
+							var d5=document.getElementById("d5");
+							d5.href="/songdel/"+storel[16];
+							var d6=document.getElementById("d6");
+							d6.href="/songdel/"+storel[20];
+							var d7=document.getElementById("d7");
+							d7.href="/songdel/"+storel[24];
+							var d8=document.getElementById("d8");
+							d8.href="/songdel/"+storel[28];
+							var d9=document.getElementById("d9");
+							d9.href="/songdel/"+storel[32];
+							var d10=document.getElementById("d10");
+							d10.href="/songdel/"+storel[36];
+							var d11=document.getElementById("d11");
+							d11.href="/songdel/"+storel[40];
+							var d12=document.getElementById("d12");
+							d12.href="/songdel/"+storel[44];
+
+							$("#sg1").text(storel[1]);
+							$("#s1").text(storel[3]);
+
+							$("#sg2").text(storel[5]);
+							$("#s2").text(storel[7]);
+
+							$("#sg3").text(storel[9]);
+							$("#s3").text(storel[11]);
+
+							$("#sg4").text(storel[13]);
+							$("#s4").text(storel[15]);
+
+							$("#sg5").text(storel[17]);
+							$("#s5").text(storel[19]);
+
+							$("#sg6").text(storel[21]);
+							$("#s6").text(storel[23]);
+
+							$("#sg7").text(storel[25]);
+							$("#s7").text(storel[27]);
+
+							$("#sg8").text(storel[29]);
+							$("#s8").text(storel[31]);
+
+							$("#sg9").text(storel[33]);
+							$("#s9").text(storel[35]);
+
+							$("#sg10").text(storel[37]);
+							$("#s10").text(storel[39]);
+
+							$("#sg11").text(storel[41]);
+							$("#s11").text(storel[43]);
+
+							$("#sg12").text(storel[45]);
+							$("#s12").text(storel[47]);
+
+
+
+						}
+					})
+				});
+		</script>
+
+			<!--下面是播放音乐所需要的js-->
+		<script src="@routes.Assets.versioned("js/mplay/jquery.jplayer.min.js")"></script>
+		<script src="@routes.Assets.versioned("js/mplay/jplayer.playlist.min.js")"></script>
+		<script src="@routes.Assets.versioned("js/mplay/play.js")"></script>
+
+	</body>
+
+</html>

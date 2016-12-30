@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html class="app">
+
+	<head>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="3usic在线音乐库" />
+		<title>3usic在线音乐库</title>
+		<script src="@routes.Assets.versioned("js/jquery-1.9.0.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/layer.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/extend/layer.ext.js")"></script>
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+			<!-- bootstrap -->
+		<link href="@routes.Assets.versioned("css/bootstrap.min.css")" rel='stylesheet' type='text/css' media="all" />
+			<!-- //bootstrap -->
+		<link href="@routes.Assets.versioned("css/dashboard.css")" rel="stylesheet" />
+			<!-- Custom Theme files -->
+		<link href="@routes.Assets.versioned("css/style.css")" rel='stylesheet' type='text/css' media="all" />
+			<!-- fonts -->
+		<link href="@routes.Assets.versioned("js/jPlayer/jplayer.flat.css")" rel="stylesheet"  type="text/css" />
+		<link href="@routes.Assets.versioned("css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+		<link href="@routes.Assets.versioned("css/simple-line-icons.css")" rel="stylesheet" type="text/css" />
+		<link href="@routes.Assets.versioned("css/font.css")" rel="stylesheet" type="text/css" />
+			<!-- //fonts -->
+		<link rel="stylesheet" href="@routes.Assets.versioned("css/app.css")" type="text/css" />
+
+		<script type="text/javascript">
+//$(document).ready(function(){
+//	getPlaylist();
+//});
+//
+//
+//function getPlaylist(){
+
+//		var playlist = [{
+//		title:"我的第一首歌曲Hidden",
+//		artist:"Miaow",
+//		mp3:"http://demo.lanrenzhijia.com/2014/music0917/images/i1.mp3",
+//		//oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg",
+//		poster: "http://33.media.tumblr.com/0b35eb42176eedbf4a96e52efa760875/tumblr_mxp7a0v3fr1rqx86wo1_500.png"
+//	},{
+//		title:"我的第二首歌曲Cro Magnon Man",
+//		artist:"The Stark Palace",
+//		mp3:"http://demo.lanrenzhijia.com/2014/music0917/images/i2.mp3",
+//		//oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
+//		poster: "http://33.media.tumblr.com/bf9dc125a47dcca91ce5b3575bc3ba92/tumblr_nbmb3j8nU51sq3g2zo1_500.png"
+//	},{
+//		title:"我的第三首歌曲Bubble",
+//		m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
+//		oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg",
+//		poster: "http://31.media.tumblr.com/810b1125a8b9e9f192d009ef58dceb07/tumblr_nbe8wsmKuz1rknpqyo1_500.jpg"
+//	}];
+//
+//	var cssSelector = {
+//		//jPlayer: "#jquery_jplayer",
+//		//cssSelectorAncestor: ".music-player"
+//		jPlayer: "#jplayer_N",
+//		cssSelectorAncestor: "#jp_container_N"
+//	};
+//
+//	var options = {
+//		swfPath: "Jplayer.swf",
+//		supplied: "ogv, m4v, oga, mp3"
+//	};
+//
+//	var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+
+//	$("#jplayer_N").jPlayer({
+//		ready: function () {
+//			$(this).jPlayer("setMedia",
+//					{title:"我的第一首歌曲Hidden",
+//						artist:"Miaow",
+//						mp3:"http://demo.lanrenzhijia.com/2014/music0917/images/i1.mp3",
+//						//oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg",
+//						poster: "http://33.media.tumblr.com/0b35eb42176eedbf4a96e52efa760875/tumblr_mxp7a0v3fr1rqx86wo1_500.png"}
+//			).jPlayer("play");
+//		},
+//		swfPath: "Jplayer.swf",
+//		supplied: "m4a, oga,mp3"
+//	});
+//};
+
+
+        </script>
+
+		<script type="text/javascript">
+
+$(document).ready(function(){
+	new jPlayerPlaylist({
+		jPlayer: "#jplayer_N",
+		cssSelectorAncestor: "#jp_container_N"
+	}, [
+		{title:"My Sound 1",mp3: "http://demo.lanrenzhijia.com/2014/music0917/images/i1.mp3", poster: "http://33.media.tumblr.com/0b35eb42176eedbf4a96e52efa760875/tumblr_mxp7a0v3fr1rqx86wo1_500.png"},
+		{title:"My Sound 2",mp3: "http://demo.lanrenzhijia.com/2014/music0917/images/i2.mp3", poster: "http://33.media.tumblr.com/bf9dc125a47dcca91ce5b3575bc3ba92/tumblr_nbmb3j8nU51sq3g2zo1_500.png", free:true}  //free:true会在列表中此条音乐名称右边出现格式选择
+	], {
+		ready: function (){$(this).jPlayer("play").jPlayer("repeat");},
+
+		swfPath: "Jplayer.swf",
+		supplied: "oga, mp3",
+		wmode: "window",
+		smoothPlayBar: true,
+		keyEnabled: true
+	});
+});
+</script>
+
+		<script type="text/javascript">
+//			$(document).ready(function(){
+//
+//
+//				var playlist = [{
+//					title:"Hidden",
+//					artist:"Miaow",
+//					mp3:"http://demo.lanrenzhijia.com/2014/music0917/images/i1.mp3",
+//					//oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg",
+//					poster: "http://33.media.tumblr.com/0b35eb42176eedbf4a96e52efa760875/tumblr_mxp7a0v3fr1rqx86wo1_500.png"
+//				},{
+//					title:"Cro Magnon Man",
+//					artist:"The Stark Palace",
+//					mp3:"http://demo.lanrenzhijia.com/2014/music0917/images/i2.mp3",
+//					//oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
+//					poster: "http://33.media.tumblr.com/bf9dc125a47dcca91ce5b3575bc3ba92/tumblr_nbmb3j8nU51sq3g2zo1_500.png"
+//				},{
+//					title:"Bubble",
+//					m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
+//					oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg",
+//					poster: "http://31.media.tumblr.com/810b1125a8b9e9f192d009ef58dceb07/tumblr_nbe8wsmKuz1rknpqyo1_500.jpg"
+//				}];
+//
+//				var cssSelector = {
+//					jPlayer: "#jquery_jplayer",
+//					cssSelectorAncestor: ".music-player"
+//				};
+//
+//				var options = {
+//					ready: function (){$(this).jPlayer("play").jPlayer("repeat");},
+//					swfPath: "http://cdnjs.cloudflare.com/ajax/libs/jplayer/2.6.4/jquery.jplayer/Jplayer.swf",
+//					supplied: "ogv, m4v, oga, mp3"
+//				};
+//
+//				var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+//			});
+		</script>
+	</head>
+
+    <body>
+
+
+			<!--头部开始-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/"><h1><img src="@routes.Assets.versioned("images/3usic_logoo.png")" alt="" class="mylogo" /></h1></a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="top-search">
+						<form class="navbar-form navbar-right">
+							<input type="text" class="form-control" placeholder="搜索...">
+							<select name="type" class="mysel" id="typesel">
+								<option value="0">全部</option>
+								<option value="1">歌曲名</option>
+								<option value="2">专辑</option>
+								<option value="3">歌手</option>
+								<option value="4">类别</option>
+							</select>
+							<s>
+								<s></s>
+							</s>
+							<input type="submit" value=" ">
+						</form>
+					</div>
+					<div class="header-top-right nologin" style="display:block;">
+						@*<div class="file">*@
+							@*<a href="/upload">上传</a>*@
+						@*</div>*@
+						<div class="signin">
+							<a id="zc" class="play-icon popup-with-zoom-anim">注册</a>
+							<script>
+								$('#zc').on('click', function () {
+									//2秒后自动关闭，-1代表不显示图标
+									//layer.msg('Hello layer', 2, -1);
+
+									$.layer({
+										type: 2,
+										shadeClose: true,
+										title: false,
+										closeBtn: [0, false],
+										shade: [0.8, '#000'],
+										border: [0],
+										offset: ['200px',''],
+										area: ['800px', '340px'],
+										iframe: {src: '/reg'}
+									});
+								});
+							</script>
+
+						</div>
+						<div class="signin">
+							<a id="dl" class="play-icon popup-with-zoom-anim">登录</a>
+							<script>
+								$('#dl').on('click', function () {
+									//2秒后自动关闭，-1代表不显示图标
+									//layer.msg('Hello layer', 2, -1);
+
+									$.layer({
+										type: 2,
+										shadeClose: true,
+										title: false,
+										closeBtn: [0, false],
+										shade: [0.8, '#000'],
+										border: [0],
+										offset: ['200px',''],
+										area: ['800px', '340px'],
+										iframe: {src: '/login'}
+									});
+								});
+							</script>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					@*<div class="header-top-right islogin" style="">*@
+						@*<div class="file">*@
+							@*<a href="/upload">上传</a>*@
+						@*</div>*@
+						@*<div class="navbar-right loginfo">*@
+							@*<ul class="nav navbar-nav m-n hidden-xs nav-user user">*@
+								@*<li class="hidden-xs">*@
+									@*<a href="#" class="dropdown-toggle lt" data-toggle="dropdown">*@
+										@*<i class="icon-bell"></i>*@
+										@*<span class="badge badge-sm up bg-danger count">2</span>*@
+									@*</a>*@
+									@*<section class="dropdown-menu aside-xl animated fadeInUp">*@
+										@*<section class="panel bg-white">*@
+											@*<div class="panel-heading b-light bg-light">*@
+												@*<strong>你有 <span class="count">2</span> 个通知</strong>*@
+											@*</div>*@
+											@*<div class="list-group list-group-alt">*@
+												@*<a href="#" class="media list-group-item">*@
+													@*<span class="pull-left thumb-sm">*@
+														@*<img src="@routes.Assets.versioned("images/a0.png.jpg")" alt="..." class="img-circle">*@
+													@*</span>*@
+													@*<span class="media-body block m-b-none">*@
+					              @*我是第一条消息内容<br/>*@
+														@*<small class="text-muted">10分钟前</small>*@
+					            @*</span>*@
+												@*</a>*@
+												@*<a href="#" class="media list-group-item">*@
+													@*<span class="media-body block m-b-none">*@
+					              @*第二条消息内容<br>*@
+														@*<small class="text-muted">1小时前</small>*@
+					            @*</span>*@
+												@*</a>*@
+											@*</div>*@
+											@*<div class="panel-footer text-sm">*@
+												@*<a href="#" class="pull-right"><i class="fa fa-cog"></i></a>*@
+												@*<a href="#notes" data-toggle="class:show animated fadeInRight">查看所有消息</a>*@
+											@*</div>*@
+										@*</section>*@
+									@*</section>*@
+								@*</li>*@
+								@*<li class="dropdown">*@
+									@*<a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">*@
+										@*<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">*@
+											@*<img src="@routes.Assets.versioned("images/a4.png.jpg")" alt="...">*@
+										@*</span>*@
+										@*萝卜头的菜 <b class="caret"></b>*@
+									@*</a>*@
+									@*<ul class="dropdown-menu animated fadeInRight">*@
+										@*<li>*@
+											@*<span class="arrow top"></span>*@
+											@*<a href="#">设置</a>*@
+										@*</li>*@
+										@*<li>*@
+											@*<a href="#"><span class="badge bg-danger pull-right">3</span>消息</a>*@
+										@*</li>*@
+										@*<li>*@
+											@*<a href="#">帮助</a>*@
+										@*</li>*@
+										@*<li class="divider"></li>*@
+										@*<li>*@
+											@*<a href="#">退出</a>*@
+										@*</li>*@
+									@*</ul>*@
+								@*</li>*@
+							@*</ul>*@
+						@*</div>*@
+						@*<div class="clearfix"> </div>*@
+					@*</div>*@
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</nav>
+			<!--头部结束-->
+
+
+			<!--左侧边开始-->
+		<div class="col-sm-3 col-md-2 sidebar">
+
+			<div class="top-navigation">
+				<div class="t-menu">菜单</div>
+				<div class="t-img">
+					<img src="@routes.Assets.versioned("images/lines.png")" alt="" />
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+			<div class="drop-navigation drop-navigation">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a></li>
+					<li><a href="#" class="menu1"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>音乐库<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+					<ul class="cl-effect-2">
+						<li><a href="/song">按专辑</a></li>
+						<li><a href="/songpeople">按歌手</a></li>
+						<li><a href="/song">按类型</a></li>
+					</ul>
+						<!-- script-for-menu -->
+					<script>
+						$( "li a.menu1" ).click(function() {
+							$( "ul.cl-effect-2" ).slideToggle( 300, function() {
+								// Animation complete.
+							});
+						});
+					</script>
+					<li><a href="/listen" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>播放</a></li>
+					<li><a href="/store" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>收藏</a></li>
+					<li><a href="/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>历史</a></li>
+				</ul>
+					<!-- script-for-menu -->
+				<script>
+						$( ".top-navigation" ).click(function() {
+							$( ".drop-navigation" ).slideToggle( 300, function() {
+								// Animation complete.
+							});
+						});
+					</script>
+				<div class="side-bottom">
+
+					<div class="copyright">
+						<p>Copyright &copy; 2016-2018. <br/> <a href="#"> WEB开发第三学习小组 版权所有</a></p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+			<!--左侧边结束-->
+
+
+
+			<!--右侧边--主体--开始-->
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main mybox">
+
+				<!--右侧主体内容开始-->
+			<div class="main-grids myscrollable">
+
+				<div class="top-grids">
+					<div class="recommended-info">
+						<h3>3usic推荐
+							<span class="musicbar animate inline m-l-sm" style="width:20px;height:20px">
+								<span class="bar1 a1 bg-primary lter"></span>
+								<span class="bar2 a2 bg-info lt"></span>
+								<span class="bar3 a3 bg-success"></span>
+								<span class="bar4 a4 bg-warning dk"></span>
+								<span class="bar5 a5 bg-danger dker"></span>
+							</span>
+						</h3>
+					</div>
+
+					<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+						<div class="item">
+							<div class="pos-rlt">
+								<div class="bottom">
+									<span class="badge bg-info m-l-sm m-b-sm"></span>
+								</div>
+								<div class="item-overlay opacity r r-2x bg-black">
+									<div class="text-info padder m-t-sm text-sm">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o text-muted"></i>
+									</div>
+									<div class="center text-center m-t-n">
+										<a id="s6" href=""><i class="icon-control-play i-2x"></i></a>
+									</div>
+									<div class="bottom padder m-b-sm">
+										<a href="#" class="pull-right">
+											<i class="fa fa-heart-o"></i>
+										</a>
+										<a href="#">
+											<i class="fa fa-plus-circle"></i>
+										</a>
+									</div>
+								</div>
+								<a href="#"><img id="s1" src="" alt="" class="r r-2x img-full"></a>
+							</div>
+
+							<div class="resent-grid-info recommended-grid-info">
+								<h3><a href="#" class="title title-info"><span id="s0"></span></a></h3>
+								<ul>
+									<li><p class="author author-info"><a href="#" class="author"><a id="s2"></a></a></p></li>
+									<li class="right-list"><p class="views views-info"><a id="s7"></a>试听</p></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+						<div class="item">
+							<div class="pos-rlt">
+								<div class="bottom">
+									<span class="badge bg-info m-l-sm m-b-sm"></span>
+								</div>
+								<div class="item-overlay opacity r r-2x bg-black active">
+									<div class="text-info padder m-t-sm text-sm">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o text-muted"></i>
+									</div>
+									<div class="center text-center m-t-n">
+										<a id="s14" href=""><i class="icon-control-play i-2x"></i></a>
+									</div>
+									<div class="bottom padder m-b-sm">
+										<a href="#" class="pull-right active" data-toggle="class">
+											<i class="fa fa-heart text-active text-danger"></i>
+										</a>
+										<a href="#" data-toggle="class">
+											<i class="fa fa-plus-circle text"></i>
+										</a>
+									</div>
+								</div>
+								<a href="#"><img id="s9" src="" alt="" class="r r-2x img-full"></a>
+							</div>
+
+							<div class="resent-grid-info recommended-grid-info">
+								<h3><a href="/listen" class="title title-info"><span id="s8"></span></a></h3>
+								<ul>
+									<li><p class="author author-info"><a href="#" class="author"><a id="s10"></a></a></p></li>
+									<li class="right-list"><p class="views views-info"><a id="s15"></a>试听</p></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+						<div class="item">
+							<div class="pos-rlt">
+								<div class="bottom">
+									<span class="badge bg-info m-l-sm m-b-sm"></span>
+								</div>
+								<div class="item-overlay opacity r r-2x bg-black">
+									<div class="text-info padder m-t-sm text-sm">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o text-muted"></i>
+									</div>
+									<div class="center text-center m-t-n">
+										<a id="s22" href=""><i class="icon-control-play i-2x"></i></a>
+									</div>
+									<div class="bottom padder m-b-sm">
+										<a href="#" class="pull-right">
+											<i class="fa fa-heart-o"></i>
+										</a>
+										<a href="#">
+											<i class="fa fa-plus-circle"></i>
+										</a>
+									</div>
+								</div>
+								<a href="#"><img id="s17" src="" alt="" class="r r-2x img-full"></a>
+							</div>
+
+							<div class="resent-grid-info recommended-grid-info">
+								<h3><a href="#" class="title title-info"><span id="s16"></span></a></h3>
+								<ul>
+									<li><p class="author author-info"><a href="#" class="author"><a id="s18"></a></a></p></li>
+									<li class="right-list"><p class="views views-info"><a id="s23"></a>试听</p></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+						<div class="item">
+							<div class="pos-rlt">
+								<div class="bottom">
+									<span class="badge bg-info m-l-sm m-b-sm"></span>
+								</div>
+								<div class="item-overlay opacity r r-2x bg-black">
+									<div class="text-info padder m-t-sm text-sm">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o text-muted"></i>
+									</div>
+									<div class="center text-center m-t-n">
+										<a id="s30" href=""><i class="icon-control-play i-2x"></i></a>
+									</div>
+									<div class="bottom padder m-b-sm">
+										<a href="#" class="pull-right">
+											<i class="fa fa-heart-o"></i>
+										</a>
+										<a href="#">
+											<i class="fa fa-plus-circle"></i>
+										</a>
+									</div>
+								</div>
+								<a href="#"><img id="s25" src="" alt="" class="r r-2x img-full"></a>
+							</div>
+
+							<div class="resent-grid-info recommended-grid-info">
+								<h3><a href="#" class="title title-info"><span id="s24"></span></a></h3>
+								<ul>
+									<li><p class="author author-info"><a href="#" class="author"><a id="s26"></a></a></p></li>
+									<li class="right-list"><p class="views views-info"><a id="s31"></a>试听</p></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+						<div class="item">
+							<div class="pos-rlt">
+								<div class="bottom">
+									<span class="badge bg-info m-l-sm m-b-sm"></span>
+								</div>
+								<div class="item-overlay opacity r r-2x bg-black">
+									<div class="text-info padder m-t-sm text-sm">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o text-muted"></i>
+									</div>
+									<div class="center text-center m-t-n">
+										<a id="s38" href=""><i class="icon-control-play i-2x"></i></a>
+									</div>
+									<div class="bottom padder m-b-sm">
+										<a href="#" class="pull-right">
+											<i class="fa fa-heart-o"></i>
+										</a>
+										<a href="#">
+											<i class="fa fa-plus-circle"></i>
+										</a>
+									</div>
+								</div>
+								<a href="#"><img id="s33" src="" alt="" class="r r-2x img-full"></a>
+							</div>
+
+							<div class="resent-grid-info recommended-grid-info">
+								<h3><a href="#" class="title title-info"><span id="s32"></span></a></h3>
+								<ul>
+									<li><p class="author author-info"><a href="#" class="author"><a id="s34"></a></a></p></li>
+									<li class="right-list"><p class="views views-info"><a id="s39"></a>试听</p></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+						<div class="item">
+							<div class="pos-rlt">
+								<div class="bottom">
+									<span class="badge bg-info m-l-sm m-b-sm"></span>
+								</div>
+								<div class="item-overlay opacity r r-2x bg-black">
+									<div class="text-info padder m-t-sm text-sm">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o text-muted"></i>
+									</div>
+									<div class="center text-center m-t-n">
+										<a href="#"><i class="icon-control-play i-2x"></i></a>
+									</div>
+									<div class="bottom padder m-b-sm">
+										<a id="s46" href="" class="pull-right">
+											<i class="fa fa-heart-o"></i>
+										</a>
+										<a href="#">
+											<i class="fa fa-plus-circle"></i>
+										</a>
+									</div>
+								</div>
+								<a href="#"><img id="s41" src="" alt="" class="r r-2x img-full"></a>
+							</div>
+
+							<div class="resent-grid-info recommended-grid-info">
+								<h3><a href="#" class="title title-info"><span id="s40"></span></a></h3>
+								<ul>
+									<li><p class="author author-info"><a href="#" class="author"><a id="s42"></a></a></p></li>
+									<li><p class="views views-info"><a id="s47"></a>试听</p></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix"> </div>
+				</div>
+
+
+				<div class="recommended show-grid-right myrgrid">
+
+						<!--新歌速递-->
+					<div class="col-md-7 leftp">
+						<h3 class="font-thin myh3">新歌速递</h3>
+						<div class="row row-sm">
+							<div class="col-xs-6 col-sm-3">
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s54" href=""><i class="fa fa-play-circle i-2x"></i></a>
+											</div>
+										</div>
+										<a href="#"><img id="s49" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+									<div class="padder-v">
+										<a href="#" class="text-ellipsis"><a id="s48"></a></a>
+										<a href="#" class="text-ellipsis text-xs text-muted"><a id="s52"></a></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s62" href=""><i class="fa fa-play-circle i-2x"></i></a>
+											</div>
+										</div>
+										<a href="#"><img id="s57" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+									<div class="padder-v">
+										<a href="#" class="text-ellipsis"><a id="s56"></a></a>
+										<a href="#" class="text-ellipsis text-xs text-muted"><a id="s60"></a></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s70" href=""><i class="fa fa-play-circle i-2x"></i></a>
+											</div>
+										</div>
+										<a href="#"><img id="s65" src=""  alt="" class="r r-2x img-full"></a>
+									</div>
+									<div class="padder-v">
+										<a href="#" class="text-ellipsis"><a id="s64"></a></a>
+										<a href="#" class="text-ellipsis text-xs text-muted"><a id="s68"></a></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s78" href=""><i class="fa fa-play-circle i-2x"></i></a>
+											</div>
+										</div>
+										<a href="#"><img id="s73" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+									<div class="padder-v">
+										<a href="#" class="text-ellipsis"><a id="s72"></a></a>
+										<a href="#" class="text-ellipsis text-xs text-muted"><a id="s76"></a></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s86" href=""><i class="fa fa-play-circle i-2x"></i></a>
+											</div>
+										</div>
+										<a href="#"><img id="s81" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+									<div class="padder-v">
+										<a href="#" class="text-ellipsis"><a id="s80"></a></a>
+										<a href="#" class="text-ellipsis text-xs text-muted"><a id="s84"></a></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s94" href=""><i class="fa fa-play-circle i-2x"></i></a>
+											</div>
+										</div>
+										<a href="#"><img id="s89" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+									<div class="padder-v">
+										<a href="#" class="text-ellipsis"><a id="s88"></a></a>
+										<a href="#" class="text-ellipsis text-xs text-muted"><a id="s92"></a></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s102" href=""><i class="fa fa-play-circle i-2x"></i></a>
+											</div>
+										</div>
+										<a href="#"><img id="s97" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+									<div class="padder-v">
+										<a href="#" class="text-ellipsis"><a id="s96"></a></a>
+										<a href="#" class="text-ellipsis text-xs text-muted"><a id="s100"></a></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-3">
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s110" href=""><i class="fa fa-play-circle i-2x"></i></a>
+											</div>
+										</div>
+										<a href="#"><img id="s105" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+									<div class="padder-v">
+										<a href="#" class="text-ellipsis"><a id="s104"></a></a>
+										<a href="#" class="text-ellipsis text-xs text-muted"><a id="s108"></a></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						<!--//新歌速递-->
+
+						<!--热门歌曲/歌曲排行榜-->
+					<div class="col-md-5">
+						<h3 class="myh3">热门歌曲</h3>
+						<div class="list-group bg-white list-group-lg no-bg auto">
+							<a href="#" class="list-group-item clearfix">
+								<span class="pull-right h2 text-muted m-l">1</span>
+								<span class="pull-left thumb-sm avatar m-r">
+									<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")"  alt="...">
+								</span>
+								<span class="clear">
+									<span>小城故事多</span>
+									<small class="text-muted clear text-ellipsis">毛啊敏</small>
+								</span>
+							</a>
+							<a href="#" class="list-group-item clearfix">
+								<span class="pull-right h2 text-muted m-l">2</span>
+								<span class="pull-left thumb-sm avatar m-r">
+									<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")" alt="...">
+								</span>
+								<span class="clear">
+									<span>小小丑小鸭</span>
+									<small class="text-muted clear text-ellipsis">蓓蕾组合</small>
+								</span>
+							</a>
+							<a href="#" class="list-group-item clearfix">
+								<span class="pull-right h2 text-muted m-l">3</span>
+								<span class="pull-left thumb-sm avatar m-r">
+									<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")" alt="...">
+								</span>
+								<span class="clear">
+									<span>万里长城永不倒</span>
+									<small class="text-muted clear text-ellipsis">姜大卫</small>
+								</span>
+							</a>
+							<a href="#" class="list-group-item clearfix">
+								<span class="pull-right h2 text-muted m-l">4</span>
+								<span class="pull-left thumb-sm avatar m-r">
+									<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")" alt="...">
+								</span>
+								<span class="clear">
+									<span>草原上的春天来了</span>
+									<small class="text-muted clear text-ellipsis">腾格尔</small>
+								</span>
+							</a>
+							<a href="#" class="list-group-item clearfix">
+								<span class="pull-right h2 text-muted m-l">5</span>
+								<span class="pull-left thumb-sm avatar m-r">
+									<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")" alt="...">
+								</span>
+								<span class="clear">
+									<span>High歌</span>
+									<small class="text-muted clear text-ellipsis">原唱者</small>
+								</span>
+							</a>
+						</div>
+					</div>
+						<!--//热门歌曲-->
+
+					<div class="clearfix"> </div>
+
+
+				</div>
+
+				<div class="hheightdiv"></div>
+
+			</div>
+				<!--右侧主体内容结束-->
+
+				<!--右侧底部开始-->
+			<div class="myfooter">
+				<footer class="footer bg-info dker">
+					<div id="jp_container_N">
+						<div class="jp-type-playlist">
+							<div id="jplayer_N" class="jp-jplayer hide"></div>
+							<div class="jp-gui">
+								<div class="jp-video-play hide">
+									<a class="jp-video-play-icon">play</a>
+								</div>
+								<div class="jp-interface">
+									<div class="jp-controls">
+										<div><a class="jp-previous" title="上一曲"><i class="icon-control-rewind i-lg"></i></a></div>
+										<div>
+											<a class="jp-play" title="播放"><i class="icon-control-play i-2x"></i></a>
+											<a class="jp-pause hid" title="暂停"><i class="icon-control-pause i-2x"></i></a>
+										</div>
+										<div><a class="jp-next" title="下一曲"><i class="icon-control-forward i-lg"></i></a></div>
+										<div class="hide"><a class="jp-stop" title="停止"><i class="fa fa-stop"></i></a></div>
+										<div><a class="" data-toggle="dropdown" data-target="#playlist" title="播放列表"><i class="icon-list"></i></a></div>
+										<div class="jp-progress hidden-xs">
+											<div class="jp-seek-bar dk">
+												<div class="jp-play-bar bg-info">
+		                                </div>
+												<div class="jp-title text-lt">
+													<ul>
+														<li></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="hidden-xs hidden-sm jp-current-time text-xs text-muted"></div>
+										<div class="hidden-xs hidden-sm jp-duration text-xs text-muted"></div>
+										<div class="hidden-xs hidden-sm">
+											<a class="jp-mute" title="静音"><i class="icon-volume-2"></i></a>
+											<a class="jp-unmute hid" title="取消静音"><i class="icon-volume-off"></i></a>
+										</div>
+										<div class="hidden-xs hidden-sm jp-volume">
+											<div class="jp-volume-bar dk">
+												<div class="jp-volume-bar-value lter"></div>
+											</div>
+										</div>
+										<div>
+											<a class="jp-shuffle" title="随机播放"><i class="icon-shuffle text-muted"></i></a>
+											<a class="jp-shuffle-off hid" title="关闭随机播放"><i class="icon-shuffle text-lt"></i></a>
+										</div>
+										<div>
+											<a class="jp-repeat" title="重复播放"><i class="icon-loop text-muted"></i></a>
+											<a class="jp-repeat-off hid" title="关闭重复播放"><i class="icon-loop text-lt"></i></a>
+										</div>
+										<div class="hide">
+											<a class="jp-full-screen" title="全屏"><i class="fa fa-expand"></i></a>
+											<a class="jp-restore-screen" title="退出全屏"><i class="fa fa-compress text-lt"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="jp-playlist dropup" id="playlist">
+								<ul class="dropdown-menu aside-xl dker">
+										<!-- The method Playlist.displayPlaylist() uses this unordered list -->
+									<li class="list-group-item"></li>
+								</ul>
+							</div>
+							<div class="jp-no-solution hide">
+								<span>需要升级</span>
+								为了播放媒体文件，你需要升级你的浏览器到最新版本 <a href="javascript:if(confirm('http://get.adobe.com/flashplayer/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://get.adobe.com/flashplayer/'" target="_blank">Flash插件</a>.
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+				<!--右侧底部结束-->
+
+		</div>
+			<!--右侧边--主体--结束-->
+
+		<div class="clearfix"> </div>
+
+		<script>
+			$(document).ready(function(){
+				$.ajax({
+					url:"/music",
+					type:"get",
+					success: function(data){
+						sfcx=data.split("!");
+
+						document.getElementById('s6').href="/musicsong1/"+sfcx[6];
+						var img1 = document.getElementById("s1");
+						img1.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[1];
+						$("#s0").text(sfcx[0]);
+						$("#s2").text(sfcx[2]);
+						$("#s7").text(sfcx[7]);
+
+						document.getElementById('s14').href="/musicsong1/"+sfcx[14];
+						var img9 = document.getElementById("s9");
+						img9.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[9];
+						$("#s8").text(sfcx[8]);
+						$("#s10").text(sfcx[10]);
+						$("#s15").text(sfcx[15]);
+
+						document.getElementById('s22').href="/musicsong1/"+sfcx[22];
+						var img17 = document.getElementById("s17");
+						img17.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[17];
+						$("#s16").text(sfcx[16]);
+						$("#s18").text(sfcx[18]);
+						$("#s23").text(sfcx[23]);
+
+						document.getElementById('s30').href="/musicsong1/"+sfcx[30];
+						var img25 = document.getElementById("s25");
+						img25.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[25];
+						$("#s24").text(sfcx[24]);
+						$("#s26").text(sfcx[26]);
+						$("#s31").text(sfcx[31]);
+
+						document.getElementById('s38').href="/musicsong1/"+sfcx[38];
+						var img33 = document.getElementById("s33");
+						img33.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[33];
+						$("#s32").text(sfcx[32]);
+						$("#s34").text(sfcx[34]);
+						$("#s39").text(sfcx[39]);
+
+						document.getElementById('s46').href="/musicsong1/"+sfcx[46];
+						var img41 = document.getElementById("s41");
+						img41.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[41];
+						$("#s40").text(sfcx[40]);
+						$("#s42").text(sfcx[42]);
+						$("#s47").text(sfcx[47]);
+
+						document.getElementById('s54').href="/musicsong1/"+sfcx[54];
+						var img49 = document.getElementById("s49");
+						img49.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[49];
+						$("#s48").text(sfcx[48]);
+						$("#s52").text(sfcx[52]);
+
+						document.getElementById('s62').href="/musicsong1/"+sfcx[62];
+						var img57 = document.getElementById("s57");
+						img57.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[57];
+						$("#s56").text(sfcx[56]);
+						$("#s60").text(sfcx[60]);
+
+						document.getElementById('s70').href="/musicsong1/"+sfcx[70];
+						var img65 = document.getElementById("s65");
+						img65.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[65];
+						$("#s64").text(sfcx[64]);
+						$("#s68").text(sfcx[68]);
+
+						document.getElementById('s78').href="/musicsong1/"+sfcx[78];
+						var img73 = document.getElementById("s73");
+						img73.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[73];
+						$("#s72").text(sfcx[72]);
+						$("#s76").text(sfcx[76]);
+
+						document.getElementById('s86').href="/musicsong1/"+sfcx[86];
+						var img81 = document.getElementById("s81");
+						img81.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[81];
+						$("#s80").text(sfcx[80]);
+						$("#s84").text(sfcx[84]);
+
+						document.getElementById('s94').href="/musicsong1/"+sfcx[94];
+						var img89 = document.getElementById("s89");
+						img89.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[89];
+						$("#s88").text(sfcx[88]);
+						$("#s92").text(sfcx[92]);
+
+						document.getElementById('s102').href="/musicsong1/"+sfcx[102];
+						var img97 = document.getElementById("s97");
+						img97.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[97];
+						$("#s96").text(sfcx[96]);
+						$("#s100").text(sfcx[100]);
+
+						document.getElementById('s110').href="/musicsong1/"+sfcx[110];
+						var img105 = document.getElementById("s105");
+						img105.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[105];
+						$("#s104").text(sfcx[104]);
+						$("#s108").text(sfcx[108]);
+					}
+				});
+			})
+		</script>
+
+		<!--下面是播放音乐所需要的js-->
+		<script src="@routes.Assets.versioned("js/mplay/jquery.jplayer.min.js")"></script>
+		<script src="@routes.Assets.versioned("js/mplay/jplayer.playlist.min.js")"></script>
+
+	</body>
+</html>

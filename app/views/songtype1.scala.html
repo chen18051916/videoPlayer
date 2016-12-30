@@ -1,0 +1,812 @@
+
+@(aaa:String,bbb:String,ccc:String)
+<!DOCTYPE HTML>
+<html class="app">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>音乐库--3usic在线音乐库</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="keywords" content="3usic在线音乐库" />
+		<script src="@routes.Assets.versioned("js/jquery-1.9.0.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/layer.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/extend/layer.ext.js")"></script>
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+			<!-- bootstrap -->
+		<link href="@routes.Assets.versioned("css/bootstrap.min.css")" rel='stylesheet' type='text/css' media="all" />
+			<!-- //bootstrap -->
+		<link href="@routes.Assets.versioned("css/dashboard.css")" rel="stylesheet">
+			<!-- Custom Theme files -->
+		<link href="@routes.Assets.versioned("css/style.css")" rel='stylesheet' type='text/css' media="all" />
+			<!-- fonts -->
+		<link href="@routes.Assets.versioned("js/jPlayer/jplayer.flat.css")" rel="stylesheet"  type="text/css" />
+		<link href="@routes.Assets.versioned("css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+		<link href="@routes.Assets.versioned("css/simple-line-icons.css")" rel="stylesheet" type="text/css" />
+		<link href="@routes.Assets.versioned("css/font.css")" rel="stylesheet" type="text/css" />
+			<!-- //fonts -->
+		<link rel="stylesheet" href="@routes.Assets.versioned("css/app.css")" type="text/css" />
+
+		<script type="text/javascript">
+
+				$(document).ready(function(){
+					new jPlayerPlaylist({
+						jPlayer: "#jplayer_N",
+						cssSelectorAncestor: "#jp_container_N"
+					}, [
+						{title:'@aaa',mp3: '@bbb', poster: '@ccc'},
+					], {
+						ready: function (){$(this).jPlayer("play").jPlayer("repeat");},
+
+						swfPath: "Jplayer.swf",
+						supplied: "oga, mp3",
+						wmode: "window",
+						smoothPlayBar: true,
+						keyEnabled: true
+					});
+				});
+		</script>
+	</head>
+
+	<body>
+
+			<!--头部开始-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/"><h1><img src="@routes.Assets.versioned("images/3usic_logoo.png")" alt="" class="mylogo" /></h1></a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="top-search">
+						<form class="navbar-form navbar-right">
+							<input type="text" class="form-control" placeholder="搜索...">
+							<select name="type" class="mysel" id="typesel">
+								<option value="0">全部</option>
+								<option value="1">歌曲名</option>
+								<option value="2">专辑</option>
+								<option value="3">歌手</option>
+								<option value="4">类别</option>
+							</select>
+							<s>
+								<s></s>
+							</s>
+							<input type="submit" value=" ">
+						</form>
+					</div>
+					<div class="header-top-right nologin" style="display:block;">
+						<div class="file">
+							<a href="/upload">上传</a>
+						</div>
+						<div class="signin">
+							<a id="zc" class="play-icon popup-with-zoom-anim">注册</a>
+							<script>
+									$('#zc').on('click', function () {
+										//2秒后自动关闭，-1代表不显示图标
+										//layer.msg('Hello layer', 2, -1);
+
+										$.layer({
+											type: 2,
+											shadeClose: true,
+											title: false,
+											closeBtn: [0, false],
+											shade: [0.8, '#000'],
+											border: [0],
+											offset: ['200px',''],
+											area: ['800px', '340px'],
+											iframe: {src: '/reg'}
+										});
+									});
+							</script>
+
+						</div>
+						<div class="signin">
+							<a id="dl" class="play-icon popup-with-zoom-anim">登录</a>
+							<script>
+									$('#dl').on('click', function () {
+										//2秒后自动关闭，-1代表不显示图标
+										//layer.msg('Hello layer', 2, -1);
+
+										$.layer({
+											type: 2,
+											shadeClose: true,
+											title: false,
+											closeBtn: [0, false],
+											shade: [0.8, '#000'],
+											border: [0],
+											offset: ['200px',''],
+											area: ['800px', '340px'],
+											iframe: {src: '/login'}
+										});
+									});
+							</script>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="header-top-right islogin" style="">
+						<div class="file">
+							<a href="/upload">上传</a>
+						</div>
+						<div class="navbar-right loginfo">
+							<ul class="nav navbar-nav m-n hidden-xs nav-user user">
+								<li class="hidden-xs">
+									<a href="#" class="dropdown-toggle lt" data-toggle="dropdown">
+										<i class="icon-bell"></i>
+										<span class="badge badge-sm up bg-danger count">2</span>
+									</a>
+									<section class="dropdown-menu aside-xl animated fadeInUp">
+										<section class="panel bg-white">
+											<div class="panel-heading b-light bg-light">
+												<strong>你有 <span class="count">2</span> 个通知</strong>
+											</div>
+											<div class="list-group list-group-alt">
+												<a href="#" class="media list-group-item">
+													<span class="pull-left thumb-sm">
+														<img src="@routes.Assets.versioned("images/a0.png.jpg")" alt="..." class="img-circle">
+													</span>
+													<span class="media-body block m-b-none">
+														我是第一条消息内容<br/>
+														<small class="text-muted">10分钟前</small>
+													</span>
+												</a>
+												<a href="#" class="media list-group-item">
+													<span class="media-body block m-b-none">
+														第二条消息内容<br>
+														<small class="text-muted">1小时前</small>
+													</span>
+												</a>
+											</div>
+											<div class="panel-footer text-sm">
+												<a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+												<a href="#notes" data-toggle="class:show animated fadeInRight">查看所有消息</a>
+											</div>
+										</section>
+									</section>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+										<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+											<img src="@routes.Assets.versioned("images/a4.png.jpg")" alt="...">
+										</span>
+										萝卜头的菜 <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu animated fadeInRight">
+										<li>
+											<span class="arrow top"></span>
+											<a href="#">设置</a>
+										</li>
+										<li>
+											<a href="#"><span class="badge bg-danger pull-right">3</span>消息</a>
+										</li>
+										<li>
+											<a href="#">帮助</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="#">退出</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</nav>
+			<!--头部结束-->
+
+			<!--左侧边开始-->
+		<div class="col-sm-3 col-md-2 sidebar">
+
+			<div class="top-navigation">
+				<div class="t-menu">菜单</div>
+				<div class="t-img">
+					<img src="@routes.Assets.versioned("images/lines.png")" alt="" />
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+			<div class="drop-navigation drop-navigation">
+				<ul class="nav nav-sidebar">
+					<li><a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a></li>
+					<li class="active"><a href="#" class="menu1"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>音乐库<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+					<ul class="cl-effect-2">
+						<li><a href="/song">按专辑</a></li>
+						<li><a href="/songpeople">按歌手</a></li>
+						<li><a href="/songtype">按类型</a></li>
+					</ul>
+						<!-- script-for-menu -->
+					<script>
+							$( "li a.menu1" ).click(function() {
+								$( "ul.cl-effect-2" ).slideToggle( 300, function() {
+									// Animation complete.
+								});
+							});
+					</script>
+					<li><a href="/listen" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>播放</a></li>
+					<li><a href="/store" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>收藏</a></li>
+					<li><a href="/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>历史</a></li>
+				</ul>
+					<!-- script-for-menu -->
+				<script>
+						$( ".top-navigation" ).click(function() {
+							$( ".drop-navigation" ).slideToggle( 300, function() {
+								// Animation complete.
+							});
+						});
+				</script>
+				<div class="side-bottom">
+
+					<div class="copyright">
+						<p>Copyright &copy; 2016-2018. <br/> <a href="#"> WEB开发第三学习小组 版权所有</a></p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+			<!--左侧边结束-->
+
+			<!--右侧边--主体--开始-->
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main mybox">
+			<div class="show-top-grids myscrollable">
+				<div class="col-sm-10 show-grid-left main-grids">
+
+					<div class="recommended">
+						<div class="my-grid">
+							<div class="recommended-info">
+								<div class="heading">
+									<h3 ><span id="s0"></span> </h3>
+								</div>
+								<div class="heading-right">
+									<a href="/songlist" class="play-icon popup-with-zoom-anim">查看更多</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s1" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+
+										</div>
+										<a><img id="s5" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s2"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s4"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s7"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s9" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s13" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s10"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s12"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s15"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s17" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s21" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s18"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s20"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s23"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s25" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s29" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s26"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s28"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s31"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div class="recommended">
+						<div class="my-grid">
+							<div class="recommended-info">
+								<div class="heading">
+									<h3><span id="s32"></span></h3>
+								</div>
+								<div class="heading-right">
+									<a  href="/songlist" class="play-icon popup-with-zoom-anim">查看更多</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s33" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s37" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s34"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s36"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s39"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s41" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s45" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s42"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><spana id="s44"></spana></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="47"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s49" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s53" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s50"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s52"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s55"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s57" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s61" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s58"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s60"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s63"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div class="recommended">
+						<div class="my-grid">
+							<div class="recommended-info">
+								<div class="heading">
+									<h3><a id="s64"></a></h3>
+								</div>
+								<div class="heading-right">
+									<a  href="/songlist" class="play-icon popup-with-zoom-anim">查看更多</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s65" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s69" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s66"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s68"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s71"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s73" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s77" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s74"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s76"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s79"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s81" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s85" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s82"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s84"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s87"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+
+								<div class="item">
+									<div class="pos-rlt">
+										<div class="item-overlay opacity r r-2x bg-black">
+											<div class="center text-center m-t-n">
+												<a id="s89" href=""><i class="icon-control-play i-2x"></i></a>
+											</div>
+										</div>
+										<a href="/listen"><img id="s93" src="" alt="" class="r r-2x img-full"></a>
+									</div>
+
+									<div class="resent-grid-info recommended-grid-info">
+										<h3><a href="/listen" class="title title-info"><span id="s90"></span></a></h3>
+										<ul>
+											<li><p class="author author-info"><a href="#" class="author"><span id="s92"></span></a></p></li>
+											<li class="right-list"><p class="views views-info"><span id="s95"></span>次试听</p></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+
+
+					<ul class="pagination pagination">
+						<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+					</ul>
+
+					<div class="heightdiv"></div>
+				</div>
+
+				<div class="col-md-2 show-grid-right">
+					<h3>即将上线专辑</h3>
+					<div class="show-right-grids">
+						<ul>
+							<li class="tv-img"><a href="#"><img src="@routes.Assets.versioned("images/mv.png")" alt="" /></a></li>
+							<li><a href="#">童年</a></li>
+						</ul>
+					</div>
+					<div class="show-right-grids">
+						<ul>
+							<li class="tv-img"><a href="#"><img src="@routes.Assets.versioned("images/mv.png")" alt="" /></a></li>
+							<li><a href="#">五月天的啦啦</a></li>
+						</ul>
+					</div>
+					<div class="show-right-grids">
+						<ul>
+							<li class="tv-img"><a href="#"><img src="@routes.Assets.versioned("images/mv.png")" alt="" /></a></li>
+							<li><a href="#">谁说的</a></li>
+						</ul>
+					</div>
+					<div class="show-right-grids">
+						<ul>
+							<li class="tv-img"><a href="#"><img src="@routes.Assets.versioned("images/mv.png")" alt="" /></a></li>
+							<li><a href="#">我的青春我做主</a></li>
+						</ul>
+					</div>
+					<div class="show-right-grids">
+						<ul>
+							<li class="tv-img"><a href="#"><img src="@routes.Assets.versioned("images/mv.png")" alt="" /></a></li>
+							<li><a href="#">红痘痘</a></li>
+						</ul>
+					</div>
+					<div class="show-right-grids">
+						<ul>
+							<li class="tv-img"><a href="#"><img src="@routes.Assets.versioned("images/mv.png")" alt="" /></a></li>
+							<li><a href="#">喜爱的你</a></li>
+						</ul>
+					</div>
+					<div class="show-right-grids">
+						<ul>
+							<li class="tv-img"><a href="#"><img src="@routes.Assets.versioned("images/mv.png")" alt="" /></a></li>
+							<li><a href="#">歌声嘹亮</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+
+				<!-- footer -->
+			<div class="myfooter">
+				<footer class="footer bg-info dker">
+					<div id="jp_container_N">
+						<div class="jp-type-playlist">
+							<div id="jplayer_N" class="jp-jplayer hide"></div>
+							<div class="jp-gui">
+								<div class="jp-video-play hide">
+									<a class="jp-video-play-icon">play</a>
+								</div>
+								<div class="jp-interface">
+									<div class="jp-controls">
+										<div><a class="jp-previous" title="上一曲"><i class="icon-control-rewind i-lg"></i></a></div>
+										<div>
+											<a id="pl" class="jp-play" title="播放"><i class="icon-control-play i-2x"></i></a>
+											<a id="zt" class="jp-pause hid" title="暂停"><i class="icon-control-pause i-2x"></i></a>
+										</div>
+										<div><a class="jp-next" title="下一曲"><i class="icon-control-forward i-lg"></i></a></div>
+										<div class="hide"><a class="jp-stop" title="停止"><i class="fa fa-stop"></i></a></div>
+										<div><a class="" data-toggle="dropdown" data-target="#playlist" title="播放列表"><i class="icon-list"></i></a></div>
+										<div class="jp-progress hidden-xs">
+											<div class="jp-seek-bar dk">
+												<div class="jp-play-bar bg-info">
+		                                </div>
+												<div class="jp-title text-lt">
+													<ul>
+														<li></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="hidden-xs hidden-sm jp-current-time text-xs text-muted"></div>
+										<div class="hidden-xs hidden-sm jp-duration text-xs text-muted"></div>
+										<div class="hidden-xs hidden-sm">
+											<a class="jp-mute" title="静音"><i class="icon-volume-2"></i></a>
+											<a class="jp-unmute hid" title="取消静音"><i class="icon-volume-off"></i></a>
+										</div>
+										<div class="hidden-xs hidden-sm jp-volume">
+											<div class="jp-volume-bar dk">
+												<div class="jp-volume-bar-value lter"></div>
+											</div>
+										</div>
+										<div>
+											<a class="jp-shuffle" title="随机播放"><i class="icon-shuffle text-muted"></i></a>
+											<a class="jp-shuffle-off hid" title="关闭随机播放"><i class="icon-shuffle text-lt"></i></a>
+										</div>
+										<div>
+											<a class="jp-repeat" title="重复播放"><i class="icon-loop text-muted"></i></a>
+											<a class="jp-repeat-off hid" title="关闭重复播放"><i class="icon-loop text-lt"></i></a>
+										</div>
+										<div class="hide">
+											<a class="jp-full-screen" title="全屏"><i class="fa fa-expand"></i></a>
+											<a class="jp-restore-screen" title="退出全屏"><i class="fa fa-compress text-lt"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="jp-playlist dropup" id="playlist">
+								<ul class="dropdown-menu aside-xl dker">
+										<!-- The method Playlist.displayPlaylist() uses this unordered list -->
+									<li class="list-group-item"></li>
+								</ul>
+							</div>
+							<div class="jp-no-solution hide">
+								<span>需要升级</span>
+								为了播放媒体文件，你需要升级你的浏览器到最新版本 <a href="javascript:if(confirm('http://get.adobe.com/flashplayer/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://get.adobe.com/flashplayer/'" target="_blank">Flash插件</a>.
+							</div>
+						</div>
+					</div>
+				</footer>
+			</div>
+				<!-- //footer -->
+		</div>
+			<!--右侧边--主体--结束-->
+
+		<div class="clearfix"> </div>
+
+		<script>
+				$(document).ready(function(){
+					$.ajax({
+						url:"/songtypemusic",
+						type:"get",
+						success: function(data){
+							sfcx=data.split("!");
+							$("#s0").text("类型:"+sfcx[0]);
+							$("#s32").text("类型:"+sfcx[32]);
+							$("#s64").text("类型:"+sfcx[64]);
+
+							document.getElementById('s1').href="/songtype1/"+sfcx[1];
+							$("#s2").text(sfcx[2]);
+							$("#s4").text(sfcx[4]);
+							$("#s7").text(sfcx[7]);
+							var img5 = document.getElementById("s5");
+							img5.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[5];
+
+							document.getElementById('s9').href="/songtype1/"+sfcx[9];
+							$("#s10").text(sfcx[10]);
+							$("#s15").text(sfcx[15]);
+							$("#s12").text(sfcx[12]);
+							var img13 = document.getElementById("s13");
+							img13.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[13];
+
+							document.getElementById('s17').href="/songtype1/"+sfcx[17];
+							$("#s20").text(sfcx[20]);
+							$("#s23").text(sfcx[23]);
+							$("#s18").text(sfcx[18]);
+							var img21 = document.getElementById("s21");
+							img21.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[21];
+
+							document.getElementById('s25').href="/songtype1/"+sfcx[25];
+							$("#s26").text(sfcx[26]);
+							$("#s28").text(sfcx[28]);
+							$("#s31").text(sfcx[31]);
+							var img29 = document.getElementById("s29");
+							img29.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[29];
+
+							document.getElementById('s33').href="/songtype1/"+sfcx[33];
+							$("#s34").text(sfcx[34]);
+							$("#s36").text(sfcx[36]);
+							$("#s39").text(sfcx[39]);
+							var img37 = document.getElementById("s37");
+							img37.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[37];
+
+							document.getElementById('s41').href="/songtype1/"+sfcx[41];
+							$("#s42").text(sfcx[42]);
+							$("#s47").text(sfcx[47]);
+							$("#s44").text(sfcx[44]);
+							var img45 = document.getElementById("s45");
+							img45.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[45];
+
+							document.getElementById('s49').href="/songtype1/"+sfcx[49];
+							$("#s52").text(sfcx[52]);
+							$("#s55").text(sfcx[55]);
+							$("#s50").text(sfcx[50]);
+							var img53 = document.getElementById("s53");
+							img53.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[53];
+
+							document.getElementById('s57').href="/songtype1/"+sfcx[57];
+							$("#s58").text(sfcx[58]);
+							$("#s60").text(sfcx[60]);
+							$("#s63").text(sfcx[63]);
+							var img61 = document.getElementById("s61");
+							img61.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[61];
+
+							document.getElementById('s65').href="/songtype1/"+sfcx[65];
+							$("#s66").text(sfcx[66]);
+							$("#s68").text(sfcx[68]);
+							$("#s71").text(sfcx[71]);
+							var img69 = document.getElementById("s69");
+							img69.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[69];
+
+							document.getElementById('s73').href="/songtype1/"+sfcx[73];
+							$("#s74").text(sfcx[74]);
+							$("#s79").text(sfcx[79]);
+							$("#s76").text(sfcx[76]);
+							var img77 = document.getElementById("s77");
+							img77.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[77];
+
+							document.getElementById('s81').href="/songtype1/"+sfcx[81];
+							$("#s84").text(sfcx[84]);
+							$("#s87").text(sfcx[87]);
+							$("#s82").text(sfcx[82]);
+							var img85 = document.getElementById("s85");
+							img85.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[85];
+
+							document.getElementById('s89').href="/songtype1/"+sfcx[89];
+							$("#s90").text(sfcx[90]);
+							$("#s92").text(sfcx[92]);
+							$("#s95").text(sfcx[95]);
+							var img93 = document.getElementById("s93");
+							img93.src="http://221.226.0.195:8020/11111/song/photo/"+sfcx[93];
+
+						}
+					})
+				});
+		</script>
+
+			<!--下面是播放音乐所需要的js-->
+		<script src="@routes.Assets.versioned("js/mplay/jquery.jplayer.min.js")"></script>
+		<script src="@routes.Assets.versioned("js/mplay/jplayer.playlist.min.js")"></script>
+
+
+	</body>
+</html>

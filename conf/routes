@@ -1,0 +1,45 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index()
+GET     /upload                     controllers.HomeController.upload()
+POST    /login                      controllers.HomeController.login()
+GET     /login                      controllers.HomeController.login()
+GET     /reg                        controllers.HomeController.reg()
+GET     /listen                     controllers.HomeController.listen()
+GET     /song                       controllers.HomeController.song()
+GET     /songpeople                 controllers.HomeController.songpeople()
+GET     /songtype                   controllers.HomeController.songtype()
+GET     /songlist                   controllers.HomeController.songlist()
+GET     /history                    controllers.HomeController.history()
+GET     /store                      controllers.HomeController.store()
+
+
+#
+GET     /songmusic                  controllers.musicController.songmusic()
+GET     /song1/:aaa                 controllers.musicController.song1(aaa:String)
+
+GET     /songpeoplemusic            controllers.musicController.songpeoplemusic()
+GET     /songpeople1/:aaa           controllers.musicController.songpeople1(aaa:String)
+
+GET     /songtypemusic              controllers.musicController.songtypemusic()
+GET     /songtype1/:aaa             controllers.musicController.songtype1(aaa:String)
+
+GET     /music                      controllers.musicController.music()
+GET     /musicsong1/:aaa            controllers.musicController.musicsong1(aaa:String)
+
+#
+POST    /postForm                   controllers.Login.newUser()
+GET     /postForm                   controllers.Login.newLogin()
+
+#
+GET     /historymusic               controllers.musicController.historymusic()
+
+#
+GET     /storelist                  controllers.storeController.storelist()
+GET     /songdel/:did               controllers.storeController.songdel(did:String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

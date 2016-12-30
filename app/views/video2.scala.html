@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html class="app">
+    <head>
+		<meta charset="UTF-8">
+	    <title>3usic在线音乐库</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="keywords" content="3usic在线音乐库" />
+		<script src="@routes.Assets.versioned("layer/jquery.js")"></script>
+		<script src="@routes.Assets.versioned("layer/layer.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/extend/layer.ext.js")"></script>
+		<script src="@routes.Assets.versioned("js/jquery-1.11.1.min.js")"></script>
+	    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("css/bootstrap.min.css")" />
+	    <link rel="stylesheet" href="@routes.Assets.versioned("css/lanrenzhijia.css")" type="text/css" />
+	    <link rel="stylesheet" href="@routes.Assets.versioned("css/dashboard.css")" >
+	    <link href="@routes.Assets.versioned("css/style.css")" rel='stylesheet' type='text/css' media="all" />
+	    <link href="@routes.Assets.versioned("css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+	    <link href="@routes.Assets.versioned("css/font.css")" rel="stylesheet" type="text/css" />
+	    <link rel="@routes.Assets.versioned("stylesheet")" href="css/app.css" type="text/css" />
+		<script src="@routes.Assets.versioned("layer/layer.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/extend/layer.ext.js")"></script>
+		<link rel="stylesheet" href="@routes.Assets.versioned("css/lanrenzhijia.css")" type="text/css" />
+		<script type="application/javascript">
+		    addEventListener("load", function() {
+		    	setTimeout(hideURLbar, 0);
+		    }, false);
+		    function hideURLbar(){
+			    window.scrollTo(0,1);
+		    }
+	    </script>
+    </head>
+
+    <body>
+		<div>
+			<div class="header">
+
+				<!--头部开始-->
+				<nav class="navbar navbar-inverse navbar-fixed-top">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="/"><h1><img src="@routes.Assets.versioned("images/3usic_logoo.png")" alt="" class="mylogo" /></h1></a>
+						</div>
+						<div id="navbar" class="navbar-collapse collapse">
+							<div class="top-search">
+								<form class="navbar-form navbar-right">
+									<input type="text" class="form-control" placeholder="搜索...">
+									<select name="type" class="mysel" id="typesel">
+										<option value="0">全部</option>
+										<option value="1">歌曲名</option>
+										<option value="2">专辑</option>
+										<option value="3">歌手</option>
+										<option value="4">类别</option>
+									</select>
+									<s>
+										<s></s>
+									</s>
+									<input type="submit" value=" ">
+								</form>
+							</div>
+							<div class="header-top-right nologin" style="display:block;">
+								<div class="file">
+									<a href="/upload">上传</a>
+								</div>
+								<div class="signin">
+									<a id="zc" class="play-icon popup-with-zoom-anim">注册</a>
+									<script>
+										$('#zc').on('click', function () {
+											//2秒后自动关闭，-1代表不显示图标
+											//layer.msg('Hello layer', 2, -1);
+
+											$.layer({
+												type: 2,
+												shadeClose: true,
+												title: false,
+												closeBtn: [0, false],
+												shade: [0.8, '#000'],
+												border: [0],
+												offset: ['20px',''],
+												area: ['800px', ($(window).height() - 300) +'px'],
+												iframe: {src: 'http://f2e.sentsin.com/chat'}
+											});
+										});
+									</script>
+
+								</div>
+								<div class="signin">
+									<a id="dl" class="play-icon popup-with-zoom-anim">登录</a>
+									<script>
+										$('#dl').on('click', function () {
+											//2秒后自动关闭，-1代表不显示图标
+											//layer.msg('Hello layer', 2, -1);
+
+											$.layer({
+												type: 2,
+												shadeClose: true,
+												title: false,
+												closeBtn: [0, false],
+												shade: [0.8, '#000'],
+												border: [0],
+												offset: ['200px',''],
+												area: ['800px', ($(window).height() - 300) +'px'],
+												iframe: {src: '/land'}
+											});
+										});
+									</script>
+									<div class="clearfix"> </div>
+								</div>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="header-top-right islogin" style="">
+							<div class="file">
+								<a href="upload.html">上传</a>
+							</div>
+							<div class="navbar-right loginfo">
+								<ul class="nav navbar-nav m-n hidden-xs nav-user user">
+									<li class="hidden-xs">
+										<a href="#" class="dropdown-toggle lt" data-toggle="dropdown">
+											<i class="icon-bell"></i>
+											<span class="badge badge-sm up bg-danger count">2</span>
+										</a>
+										<section class="dropdown-menu aside-xl animated fadeInUp">
+											<section class="panel bg-white">
+												<div class="panel-heading b-light bg-light">
+													<strong>你有 <span class="count">2</span> 个通知</strong>
+												</div>
+												<div class="list-group list-group-alt">
+													<a href="#" class="media list-group-item">
+														<span class="pull-left thumb-sm">
+															<img src="@routes.Assets.versioned("images/a1.png.jpg")" alt="..." class="img-circle">
+														</span>
+														<span class="media-body block m-b-none">
+					              我是第一条消息内容<br/>
+															<small class="text-muted">10分钟前</small>
+					            </span>
+													</a>
+													<a href="#" class="media list-group-item">
+														<span class="media-body block m-b-none">
+					              第二条消息内容<br>
+															<small class="text-muted">1小时前</small>
+					            </span>
+													</a>
+												</div>
+												<div class="panel-footer text-sm">
+													<a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+													<a href="#notes" data-toggle="class:show animated fadeInRight">查看所有消息</a>
+												</div>
+											</section>
+										</section>
+									</li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+											<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+												<img src="@routes.Assets.versioned("images/a4.png.jpg")" alt="...">
+											</span>
+											萝卜头的菜 <b class="caret"></b>
+										</a>
+										<ul class="dropdown-menu animated fadeInRight">
+											<li>
+												<span class="arrow top"></span>
+												<a href="#">设置</a>
+											</li>
+											<li>
+												<a href="#"><span class="badge bg-danger pull-right">3</span>消息</a>
+											</li>
+											<li>
+												<a href="#">帮助</a>
+											</li>
+											<li class="divider"></li>
+											<li>
+												<a href="#">退出</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+
+			    </nav>
+				<!--头部结束-->
+
+			</div>
+
+			<div id="content" class="content">
+				<div id="left" class="left">
+					<!--左侧边开始-->
+					<div class="col-sm-3 col-md-2 sidebar">
+
+						<div class="top-navigation">
+							<div class="t-menu">菜单</div>
+							<div class="t-img">
+								<img src="@routes.Assets.versioned("images/lines.png")" alt="" />
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+
+						<div class="drop-navigation drop-navigation">
+							<ul class="nav nav-sidebar">
+								<li class="active"><a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a></li>
+								<li><a href="#" class="menu1"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>音乐库<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+								<ul class="cl-effect-2">
+									<li><a href="/song">按专辑</a></li>
+									<li><a href="/song">按歌手</a></li>
+									<li><a href="/song">按类型</a></li>
+								</ul>
+									<!-- script-for-menu -->
+								<script>
+						$( "li a.menu1" ).click(function() {
+							$( "ul.cl-effect-2" ).slideToggle( 300, function() {
+								// Animation complete.
+							});
+						});
+					</script>
+								<li><a href="/listen" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>播放</a></li>
+								<li><a href="/store" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>收藏</a></li>
+								<li><a href="/history" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>历史</a></li>
+							</ul>
+								<!-- script-for-menu -->
+							<script>
+						$( ".top-navigation" ).click(function() {
+							$( ".drop-navigation" ).slideToggle( 300, function() {
+								// Animation complete.
+							});
+						});
+					</script>
+							<div class="side-bottom">
+
+								<div class="copyright">
+									<p>Copyright &copy; 2016-2018. <br/> <a href="#"> WEB开发第三学习小组 版权所有</a></p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--左侧边结束-->
+				</div>
+
+				<div id="right" class="right">
+					<!--右侧主体内容开始-->
+					<div class="main-grids myscrollable">
+
+						<div class="col-sm-9 col-md-12 main mybox">
+							<div class="top-grids">
+								<div class="recommended-info">
+									<h3>3usic推荐
+										<span class="musicbar animate inline m-l-sm" style="width:20px;height:20px">
+											<span class="bar1 a1 bg-primary lter"></span>
+											<span class="bar2 a2 bg-info lt"></span>
+											<span class="bar3 a3 bg-success"></span>
+											<span class="bar4 a4 bg-warning dk"></span>
+											<span class="bar5 a5 bg-danger dker"></span>
+										</span>
+									</h3>
+								</div>
+
+								<div>
+									<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="bottom">
+													<span class="badge bg-info m-l-sm m-b-sm">03:20</span>
+												</div>
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="text-info padder m-t-sm text-sm">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o text-muted"></i>
+													</div>
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="icon-control-play i-2x"></i></a>
+													</div>
+													<div class="bottom padder m-b-sm">
+														<a href="#" class="pull-right">
+															<i class="fa fa-heart-o"></i>
+														</a>
+														<a href="#">
+															<i class="fa fa-plus-circle"></i>
+														</a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/bpics/p1.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+
+											<div class="resent-grid-info recommended-grid-info">
+												<h3><a href="#" class="title title-info">我爱北京天安门1</a></h3>
+												<ul>
+													<li><p class="author author-info"><a href="#" class="author">大陆货</a></p></li>
+													<li class="right-list"><p class="views views-info">2,114,200 试听</p></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="bottom">
+													<span class="badge bg-info m-l-sm m-b-sm">03:20</span>
+												</div>
+												<div class="item-overlay opacity r r-2x bg-black active">
+													<div class="text-info padder m-t-sm text-sm">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o text-muted"></i>
+													</div>
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="icon-control-play i-2x"></i></a>
+													</div>
+													<div class="bottom padder m-b-sm">
+														<a href="#" class="pull-right active" data-toggle="class">
+															<i class="fa fa-heart text-active text-danger"></i>
+														</a>
+														<a href="#" data-toggle="class">
+															<i class="fa fa-plus-circle text"></i>
+														</a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/bpics/p2.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+
+											<div class="resent-grid-info recommended-grid-info">
+												<h3><a href="listen.html" class="title title-info">我爱北京天安门2</a></h3>
+												<ul>
+													<li><p class="author author-info"><a href="#" class="author">大陆货</a></p></li>
+													<li class="right-list"><p class="views views-info">2,114,200 试听</p></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="bottom">
+													<span class="badge bg-info m-l-sm m-b-sm">03:20</span>
+												</div>
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="text-info padder m-t-sm text-sm">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o text-muted"></i>
+													</div>
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="icon-control-play i-2x"></i></a>
+													</div>
+													<div class="bottom padder m-b-sm">
+														<a href="#" class="pull-right">
+															<i class="fa fa-heart-o"></i>
+														</a>
+														<a href="#">
+															<i class="fa fa-plus-circle"></i>
+														</a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/bpics/p3.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+
+											<div class="resent-grid-info recommended-grid-info">
+												<h3><a href="#" class="title title-info">我爱北京天安门3</a></h3>
+												<ul>
+													<li><p class="author author-info"><a href="#" class="author">大陆货</a></p></li>
+													<li class="right-list"><p class="views views-info">2,114,200 试听</p></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="bottom">
+													<span class="badge bg-info m-l-sm m-b-sm">03:20</span>
+												</div>
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="text-info padder m-t-sm text-sm">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o text-muted"></i>
+													</div>
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="icon-control-play i-2x"></i></a>
+													</div>
+													<div class="bottom padder m-b-sm">
+														<a href="#" class="pull-right">
+															<i class="fa fa-heart-o"></i>
+														</a>
+														<a href="#">
+															<i class="fa fa-plus-circle"></i>
+														</a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/bpics/p4.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+
+											<div class="resent-grid-info recommended-grid-info">
+												<h3><a href="#" class="title title-info">我爱北京天安门4</a></h3>
+												<ul>
+													<li><p class="author author-info"><a href="#" class="author">大陆货</a></p></li>
+													<li class="right-list"><p class="views views-info">2,114,200 试听</p></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="bottom">
+													<span class="badge bg-info m-l-sm m-b-sm">03:20</span>
+												</div>
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="text-info padder m-t-sm text-sm">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o text-muted"></i>
+													</div>
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="icon-control-play i-2x"></i></a>
+													</div>
+													<div class="bottom padder m-b-sm">
+														<a href="#" class="pull-right">
+															<i class="fa fa-heart-o"></i>
+														</a>
+														<a href="#">
+															<i class="fa fa-plus-circle"></i>
+														</a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/bpics/p5.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+
+											<div class="resent-grid-info recommended-grid-info">
+												<h3><a href="#" class="title title-info">我爱北京天安门5</a></h3>
+												<ul>
+													<li><p class="author author-info"><a href="#" class="author">大陆货</a></p></li>
+													<li class="right-list"><p class="views views-info">2,114,200 试听</p></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-2 resent-grid recommended-grid slider-top-grids">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="bottom">
+													<span class="badge bg-info m-l-sm m-b-sm">03:20</span>
+												</div>
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="text-info padder m-t-sm text-sm">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o text-muted"></i>
+													</div>
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="icon-control-play i-2x"></i></a>
+													</div>
+													<div class="bottom padder m-b-sm">
+														<a href="#" class="pull-right">
+															<i class="fa fa-heart-o"></i>
+														</a>
+														<a href="#">
+															<i class="fa fa-plus-circle"></i>
+														</a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/bpics/p6.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+
+											<div class="resent-grid-info recommended-grid-info">
+												<h3><a href="#" class="title title-info">我爱北京天安门6</a></h3>
+												<ul>
+													<li><p class="author author-info"><a href="#" class="author">大陆货</a></p></li>
+													<li><p class="views views-info">2,114,200 试听</p></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									<div class="clearfix"> </div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="recommended show-grid-right">
+
+								<!--新歌速递-->
+							<div class="col-md-7">
+								<h3 class="font-thin myh3">新歌速递</h3>
+								<div class="row row-sm">
+									<div class="col-xs-6 col-sm-3">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/npics/m0.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+											<div class="padder-v">
+												<a href="#" class="text-ellipsis">夏天的雨</a>
+												<a href="#" class="text-ellipsis text-xs text-muted">雨泽</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/npics/m1.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+											<div class="padder-v">
+												<a href="#" class="text-ellipsis">希望的天气</a>
+												<a href="#" class="text-ellipsis text-xs text-muted">偶他桑</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/npics/m2.jpg")"  alt="" class="r r-2x img-full"></a>
+											</div>
+											<div class="padder-v">
+												<a href="#" class="text-ellipsis">听话的风</a>
+												<a href="#" class="text-ellipsis text-xs text-muted">你呀你</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/npics/m3.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+											<div class="padder-v">
+												<a href="#" class="text-ellipsis">叫醒我</a>
+												<a href="#" class="text-ellipsis text-xs text-muted">丰泽</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/npics/m4.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+											<div class="padder-v">
+												<a href="#" class="text-ellipsis">我真的一无所有</a>
+												<a href="#" class="text-ellipsis text-xs text-muted">迪克牛仔</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/npics/m5.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+											<div class="padder-v">
+												<a href="#" class="text-ellipsis">江南Style</a>
+												<a href="#" class="text-ellipsis text-xs text-muted">鸟叔</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/npics/m6.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+											<div class="padder-v">
+												<a href="#" class="text-ellipsis">黎明的钟声</a>
+												<a href="#" class="text-ellipsis text-xs text-muted">维亚</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-6 col-sm-3">
+										<div class="item">
+											<div class="pos-rlt">
+												<div class="item-overlay opacity r r-2x bg-black">
+													<div class="center text-center m-t-n">
+														<a href="#"><i class="fa fa-play-circle i-2x"></i></a>
+													</div>
+												</div>
+												<a href="#"><img src="@routes.Assets.versioned("images/npics/m7.jpg")" alt="" class="r r-2x img-full"></a>
+											</div>
+											<div class="padder-v">
+												<a href="#" class="text-ellipsis">圣诞夜之歌</a>
+												<a href="#" class="text-ellipsis text-xs text-muted">不知名</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+								<!--//新歌速递-->
+
+								<!--热门歌曲/歌曲排行榜-->
+							<div class="col-md-5">
+								<h3 class="myh3">热门歌曲</h3>
+								<div class="list-group bg-white list-group-lg no-bg auto">
+									<a href="#" class="list-group-item clearfix">
+										<span class="pull-right h2 text-muted m-l">1</span>
+										<span class="pull-left thumb-sm avatar m-r">
+											<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")"  alt="...">
+										</span>
+										<span class="clear">
+											<span>小城故事多</span>
+											<small class="text-muted clear text-ellipsis">毛啊敏</small>
+										</span>
+									</a>
+									<a href="#" class="list-group-item clearfix">
+										<span class="pull-right h2 text-muted m-l">2</span>
+										<span class="pull-left thumb-sm avatar m-r">
+											<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")" alt="...">
+										</span>
+										<span class="clear">
+											<span>小小丑小鸭</span>
+											<small class="text-muted clear text-ellipsis">蓓蕾组合</small>
+										</span>
+									</a>
+									<a href="#" class="list-group-item clearfix">
+										<span class="pull-right h2 text-muted m-l">3</span>
+										<span class="pull-left thumb-sm avatar m-r">
+											<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")" alt="...">
+										</span>
+										<span class="clear">
+											<span>万里长城永不倒</span>
+											<small class="text-muted clear text-ellipsis">姜大卫</small>
+										</span>
+									</a>
+									<a href="#" class="list-group-item clearfix">
+										<span class="pull-right h2 text-muted m-l">4</span>
+										<span class="pull-left thumb-sm avatar m-r">
+											<img src="@routes.Assets.versioned("images/npics/a4.png.jpg")" alt="...">
+										</span>
+										<span class="clear">
+											<span>草原上的春天来了</span>
+											<small class="text-muted clear text-ellipsis">腾格尔</small>
+										</span>
+									</a>
+								</div>
+							</div>
+								<!--//热门歌曲-->
+
+							<div class="clearfix"> </div>
+
+
+						</div>
+
+						<div class="hheightdiv"></div>
+
+					</div>
+					<!--右侧主体内容结束-->
+				</div>
+			</div>
+
+			<div class="footer">
+				<!--底部开始-->
+				<div >
+					<div class="music-player">
+						<div class="info">
+							<div class="leftfooter"> <a href="javascript:;" class="icon-shuffle"></a> <a href="javascript:;" class="icon-heart"></a> </div>
+							<div class="controls">
+								<div class="current jp-current-time">00:00</div>
+								<div class="play-controls">
+									<a href="javascript:;" class="icon-previous jp-previous" title="previous"></a>
+									<a href="javascript:;" class="icon-play jp-play" title="play"></a>
+									<a href="javascript:;" class="icon-pause jp-pause" title="pause"></a>
+									<a href="javascript:;" class="icon-next jp-next" title="next"></a>
+								</div>
+								<div class="volume-level jp-volume-bar">
+									<span class="jp-volume-bar-value" style="width: 0%"></span>
+									<a href="javascript:;" class="icon-volume-up jp-volume-max" title="max volume"></a>
+									<a href="javascript:;" class="icon-volume-down jp-mute" title="mute"></a>
+								</div>
+							</div>
+							<div class="rightfooter"> <a href="javascript:;" class="icon-repeat"></a> <a href="javascript:;" class="icon-share"></a> </div>
+							<div class="progress jp-seek-bar"> <span class="jp-play-bar" style="width: 0%"></span> </div>
+						</div>
+						<div class="center">
+							<div class="jp-playlist">
+								<ul>
+									<li></li>
+								</ul>
+							</div>
+
+						</div>
+
+						<div id="jquery_jplayer" class="jp-jplayer"></div>
+					</div>
+				</div>
+				<!--底部结束-->
+			</div>
+		</div>
+	</body>
+
+	<script>
+		$(document).ready(function(){
+
+
+			var playlist = [{
+				title:"Hidden",
+				artist:"Miaow",
+				mp3:"http://demo.lanrenzhijia.com/2014/music0917/images/i1.mp3",
+				//oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg",
+				poster: "http://33.media.tumblr.com/0b35eb42176eedbf4a96e52efa760875/tumblr_mxp7a0v3fr1rqx86wo1_500.png"
+			},{
+				title:"Cro Magnon Man",
+				artist:"The Stark Palace",
+				mp3:"http://demo.lanrenzhijia.com/2014/music0917/images/i2.mp3",
+				//oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg",
+				poster: "http://33.media.tumblr.com/bf9dc125a47dcca91ce5b3575bc3ba92/tumblr_nbmb3j8nU51sq3g2zo1_500.png"
+			},{
+				title:"Bubble",
+				m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
+				oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg",
+				poster: "http://31.media.tumblr.com/810b1125a8b9e9f192d009ef58dceb07/tumblr_nbe8wsmKuz1rknpqyo1_500.jpg"
+			}];
+
+			var cssSelector = {
+				jPlayer: "#jquery_jplayer",
+				cssSelectorAncestor: ".music-player"
+			};
+
+			var options = {
+				swfPath: "http://cdnjs.cloudflare.com/ajax/libs/jplayer/2.6.4/jquery.jplayer/Jplayer.swf",
+				supplied: "ogv, m4v, oga, mp3"
+			};
+
+			var myPlaylist = new jPlayerPlaylist(cssSelector, playlist, options);
+
+			totalheight = document.documentElement.clientHeight;
+			colHeight = totalheight-100-document.getElementById("right").offsetTop;
+			document.getElementById("right").style.height=colHeight+"px";
+
+			totalwidth = document.documentElement.clientWidth;
+
+		});
+	</script>
+	<script src="@routes.Assets.versioned("js/bootstrap.min.js")"/>
+	<script src="@routes.Assets.versioned("js/jqueryMusic.min.js")"></script>
+	<script src="@routes.Assets.versioned("js/jquery.jplayer.min.js")"></script>
+	<script src="@routes.Assets.versioned("js/jplayer.playlist.min.js")"></script>
+	<!--<script src="@routes.Assets.versioned("js/lanrenzhijia.js")"></script> -->
+
+</html>

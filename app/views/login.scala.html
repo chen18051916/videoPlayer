@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link href="@routes.Assets.versioned("css/popuo-box.css")" rel="stylesheet" type="text/css" media="all" />
+		<title>登录</title>
+	</head>
+	<body style="width:800px;height:340px;overflow:hidden;margin:0 auto;">
+
+
+		<div id="small-dialog" class="regdial" style="max-width:93%;margin:10px auto;position:relative;height:82%;clear:both;">
+			<h3>登录</h3>
+			<div class="social-sits" style="width:40%;">
+				<div class="facebook-button">
+					<a href="#">用QQ账号登录</a>
+				</div>
+				<div class="button-bottom">
+					<p>新账号? <a href="/reg" class="play-icon popup-with-zoom-anim">注册</a></p>
+				</div>
+			</div>
+			<div class="signup" style="width:40%;">
+				<form action="/postForm" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="get">
+					<input name="user" type="text" class="email" placeholder="请输入邮箱/手机号" required="required" />
+					<input name="password" type="password" placeholder="请输入密码" required="required" title="最少6个字符" autocomplete="off" />
+					<div class="forgot">
+						<a href="#">忘记密码 ?</a>
+					</div>
+					<input type="submit"  value="登录"/>
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+			<button class="mfp-close" title=" (Esc)" type="button">×</button>
+		</div>
+
+	</body>
+</html>

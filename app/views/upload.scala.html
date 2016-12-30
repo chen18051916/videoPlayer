@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>上传--3usic在线音乐库</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="3usic在线音乐库" />
+		<script src="@routes.Assets.versioned("js/jquery-1.9.0.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/layer.min.js")"></script>
+		<script src="@routes.Assets.versioned("layer/extend/layer.ext.js")"></script>
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+			<!-- bootstrap -->
+		<link href="@routes.Assets.versioned("css/bootstrap.min.css")" rel='stylesheet' type='text/css' media="all" />
+			<!-- //bootstrap -->
+		<link href="@routes.Assets.versioned("css/dashboard.css")" rel="stylesheet">
+			<!-- Custom Theme files -->
+		<link href="@routes.Assets.versioned("css/style.css")" rel='stylesheet' type='text/css' media="all" />
+			<!-- fonts -->
+		<link href="@routes.Assets.versioned("js/jPlayer/jplayer.flat.css")" rel="stylesheet"  type="text/css" />
+		<link href="@routes.Assets.versioned("css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+		<link href="@routes.Assets.versioned("css/simple-line-icons.css")" rel="stylesheet" type="text/css" />
+		<link href="@routes.Assets.versioned("css/font.css")" rel="stylesheet" type="text/css" />
+			<!-- //fonts -->
+		<link rel="stylesheet" href="@routes.Assets.versioned("css/app.css")" type="text/css" />
+	</head>
+    <body>
+
+			<!--头部开始-->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/"><h1><img src="@routes.Assets.versioned("images/3usic_logoo.png")" alt="" class="mylogo" /></h1></a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="top-search">
+						<form class="navbar-form navbar-right">
+							<input type="text" class="form-control" placeholder="搜索...">
+							<select name="type" class="mysel" id="typesel">
+								<option value="0">全部</option>
+								<option value="1">歌曲名</option>
+								<option value="2">专辑</option>
+								<option value="3">歌手</option>
+								<option value="4">类别</option>
+							</select>
+							<s>
+								<s></s>
+							</s>
+							<input type="submit" value=" ">
+						</form>
+					</div>
+					<div class="header-top-right nologin" style="display:block;">
+						<div class="file">
+							<a href="/upload">上传</a>
+						</div>
+						<div class="signin">
+							<a id="zc" class="play-icon popup-with-zoom-anim">注册</a>
+							<script>
+								$('#zc').on('click', function () {
+									//2秒后自动关闭，-1代表不显示图标
+									//layer.msg('Hello layer', 2, -1);
+
+									$.layer({
+										type: 2,
+										shadeClose: true,
+										title: false,
+										closeBtn: [0, false],
+										shade: [0.8, '#000'],
+										border: [0],
+										offset: ['200px',''],
+										area: ['800px', '340px'],
+										iframe: {src: '/reg'}
+									});
+								});
+							</script>
+
+						</div>
+						<div class="signin">
+							<a id="dl" class="play-icon popup-with-zoom-anim">登录</a>
+							<script>
+								$('#dl').on('click', function () {
+									//2秒后自动关闭，-1代表不显示图标
+									//layer.msg('Hello layer', 2, -1);
+
+									$.layer({
+										type: 2,
+										shadeClose: true,
+										title: false,
+										closeBtn: [0, false],
+										shade: [0.8, '#000'],
+										border: [0],
+										offset: ['200px',''],
+										area: ['800px', '340px'],
+										iframe: {src: '/login'}
+									});
+								});
+							</script>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="header-top-right islogin" style="">
+						<div class="file">
+							<a href="/upload">上传</a>
+						</div>
+						<div class="navbar-right loginfo">
+							<ul class="nav navbar-nav m-n hidden-xs nav-user user">
+								<li class="hidden-xs">
+									<a href="#" class="dropdown-toggle lt" data-toggle="dropdown">
+										<i class="icon-bell"></i>
+										<span class="badge badge-sm up bg-danger count">2</span>
+									</a>
+									<section class="dropdown-menu aside-xl animated fadeInUp">
+										<section class="panel bg-white">
+											<div class="panel-heading b-light bg-light">
+												<strong>你有 <span class="count">2</span> 个通知</strong>
+											</div>
+											<div class="list-group list-group-alt">
+												<a href="#" class="media list-group-item">
+													<span class="pull-left thumb-sm">
+														<img src="@routes.Assets.versioned("images/a0.png.jpg")" alt="..." class="img-circle">
+													</span>
+													<span class="media-body block m-b-none">
+					              我是第一条消息内容<br/>
+														<small class="text-muted">10分钟前</small>
+					            </span>
+												</a>
+												<a href="#" class="media list-group-item">
+													<span class="media-body block m-b-none">
+					              第二条消息内容<br>
+														<small class="text-muted">1小时前</small>
+					            </span>
+												</a>
+											</div>
+											<div class="panel-footer text-sm">
+												<a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+												<a href="#notes" data-toggle="class:show animated fadeInRight">查看所有消息</a>
+											</div>
+										</section>
+									</section>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+										<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+											<img src="@routes.Assets.versioned("images/a4.png.jpg")" alt="...">
+										</span>
+										萝卜头的菜 <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu animated fadeInRight">
+										<li>
+											<span class="arrow top"></span>
+											<a href="#">设置</a>
+										</li>
+										<li>
+											<a href="#"><span class="badge bg-danger pull-right">3</span>消息</a>
+										</li>
+										<li>
+											<a href="#">帮助</a>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<a href="#">退出</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</nav>
+			<!--头部结束-->
+
+			<!-- upload -->
+		<div class="upload">
+				<!-- container -->
+			<div class="container">
+				<div class="upload-grids">
+					<div class="upload-right myscrollable">
+						<div class="upload-else">
+							<div class="elsexx">
+								<label for="songtype">歌曲类别：
+								<select name="songtype" id="songtype">
+									<option value="流行金曲">流行金曲</option>
+									<option value="经典老歌">经典老歌</option>
+									<option value="轻音乐">轻音乐</option>
+									<option value="热舞DJ">热舞DJ</option>
+									<option value="欧美金曲">欧美金曲</option>
+								</select></label>
+								<label for="songtitle">歌曲名：<input type="text" class="upftext" value="" name="songtitle" id="songtitle" /></label>
+								<label for="singer">演唱者：<input type="text" class="upftext" value="" name="singer" id="singer" /></label>
+								<!--
+								<label for="album">专辑名：<input type="text" class="upftext" value="" name="album" id="album" /></label>
+								-->
+							</div>
+							<div class="elsexx secd">
+								<label for="songfile">歌曲文件：<input type="text" class="upftext" value="" name="songfile" id="songfile" /></label>
+								<!--
+								<label for="lyricfile">歌词文件：<input type="text" class="upftext" value="" name="lyricfile" id="lyricfile" /></label>
+								-->
+								<label for="album">专辑名：<input type="text" class="upftext" value="" name="album" id="album" /></label>
+								<input type="submit" class="submit play-icon popup-with-zoom-anim" value="提交" name="submit" id="submit" />
+							</div>
+						</div>
+
+						<div class="upload-file">
+							<div class="services-icon">
+								<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+							</div>
+							<input type="file" value="请选择上传的文件..">
+						</div>
+						<div class="upload-info">
+							<h5>选择上传文件</h5>
+							<span>或者</span>
+							<p>拖拽文件</p>
+						</div>
+					</div>
+					<div class="upload-right-bottom-grids">
+						<div class="col-md-4 upload-right-bottom-left">
+							<h4>帮助和建议</h4>
+							<div class="upload-right-top-list">
+								<ul>
+									<li><a href="#">网页风格</a></li>
+									<li><a href="#">在线音乐库</a></li>
+									<li><a href="#">歌曲播放</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-4 upload-right-bottom-left">
+							<h4>原声大碟</h4>
+							<div class="upload-right-top-list">
+								<ul>
+									<li><a href="#">完美的莫斯科</a></li>
+									<li><a href="#">黄河进行曲</a></li>
+									<li><a href="#">梁祝</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-4 upload-right-bottom-left">
+							<h4>新碟播报</h4>
+							<div class="upload-right-top-list">
+								<ul>
+									<li><a href="#">海燕飞舞</a></li>
+									<li><a href="#">万物生</a></li>
+									<li><a href="#">滴答滴答的声音</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+				<!-- //container -->
+		</div>
+			<!-- //upload -->
+
+			<!-- footer -->
+		<div class="footer centerfooter">
+			<div class="copyright">
+				<p>Copyright &copy; 2016-2018. <br/> <a href="#"> WEB开发第三学习小组 版权所有</a></p>
+			</div>
+		</div>
+			<!-- //footer -->
+
+		<div class="clearfix"> </div>
+
+			<!--下面是播放音乐所需要的js-->
+		<script src="@routes.Assets.versioned("js/mplay/jquery.jplayer.min.js")"></script>
+		<script src="@routes.Assets.versioned("js/mplay/jplayer.playlist.min.js")"></script>
+		<script src="@routes.Assets.versioned("js/mplay/play.js")"></script>
+
+    </body>
+
+</html>
